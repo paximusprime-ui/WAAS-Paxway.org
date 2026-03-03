@@ -68,6 +68,15 @@ function getFollowUpChips(botResponse: string): SuggestionChip[] {
         ];
     }
 
+    // AI features follow-ups
+    if (lower.includes("ai chatbot") || lower.includes("quoting engine") || lower.includes("smart scheduling") || lower.includes("content generation") || lower.includes("predictive analytics") || lower.includes("voice & vision")) {
+        return [
+            { label: "💰 How much for AI?", message: "How much does AI integration cost?" },
+            { label: "⚡ How fast to build?", message: "How long does it take to build AI features?" },
+            { label: "📋 See all features", message: "What other features do your plans include?" },
+        ];
+    }
+
     // Default follow-ups
     return [
         { label: "🏪 Local business site", message: "I need a website for my local business" },
@@ -160,9 +169,14 @@ function generateResponse(input: string): string {
         return "Speed is one of our biggest advantages! ⚡ Launch sites go live in **7–10 days**, Grow projects in **10–14 days**, and even our most complex Dominate builds are ready in **2–3 weeks**. That's 4–6x faster than traditional agencies. When do you need to launch?";
     }
 
+    // AI-specific features question
+    if (/ai feature|ai.*(build|offer|do)|what.*ai|ai.*can you|artificial intelligence|chatbot.*(build|create|make)|ai integrat/i.test(lower)) {
+        return "Great question! Here's what we can build for you:\n\n🤖 **AI Chatbots** — Custom-trained bots that answer FAQs, qualify leads, and book appointments 24/7\n\n💬 **Automated Quoting Engines** — Visitors describe their needs and get instant, accurate price estimates\n\n📅 **Smart Scheduling** — AI-powered booking that optimizes your calendar and reduces no-shows\n\n✍️ **Content Generation** — Auto-generate product descriptions, blog posts, and social media copy tailored to your brand\n\n📊 **Predictive Analytics** — Dashboards that forecast sales trends, customer behavior, and inventory needs\n\n🎙️ **Voice & Vision AI** — Voice search, image recognition, and accessibility features for next-gen UX\n\nAll AI features are custom-built and trained on **your** business data. Want to know more about pricing or how fast we can build any of these?";
+    }
+
     // What's included / features question
     if (/what('?s| is) included|features|come with|what do (i|you) get/i.test(lower)) {
-        return "Every plan includes: **custom design**, **mobile-first development**, **Stripe payments**, **SEO optimization**, and **managed hosting**. Higher tiers add dashboards, booking systems, AI integration, and dedicated support. Want me to break down a specific tier?";
+        return "Every plan includes: **custom design**, **mobile-first development**, **Stripe payments**, **SEO optimization**, and **managed hosting**.\n\nHere's what upgrades unlock:\n\n⚡ **Grow** adds user dashboards, appointment booking, CRM integrations, and advanced SEO\n🚀 **Dominate** adds AI chatbots, predictive analytics, A/B testing, and a dedicated technical partner\n\nWant me to break down a specific tier or describe a feature in detail?";
     }
 
     // Difference / compare question

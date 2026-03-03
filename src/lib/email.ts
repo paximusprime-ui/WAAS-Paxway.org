@@ -2,26 +2,26 @@ import { Resend } from "resend";
 
 let _resend: Resend | null = null;
 function getResend(): Resend {
-    if (!_resend) {
-        const key = process.env.RESEND_API_KEY;
-        if (!key) throw new Error("RESEND_API_KEY is not set.");
-        _resend = new Resend(key);
-    }
-    return _resend;
+  if (!_resend) {
+    const key = process.env.RESEND_API_KEY;
+    if (!key) throw new Error("RESEND_API_KEY is not set.");
+    _resend = new Resend(key);
+  }
+  return _resend;
 }
 
 interface ContractEmailData {
-    clientName: string;
-    clientEmail: string;
-    tier: string;
-    pdfBuffer: Buffer;
+  clientName: string;
+  clientEmail: string;
+  tier: string;
+  pdfBuffer: Buffer;
 }
 
 export async function sendContractEmail(data: ContractEmailData) {
-    const tierLabel = data.tier.charAt(0).toUpperCase() + data.tier.slice(1);
-    const ownerEmail = process.env.OWNER_EMAIL || "hello@paxway.org";
+  const tierLabel = data.tier.charAt(0).toUpperCase() + data.tier.slice(1);
+  const ownerEmail = process.env.OWNER_EMAIL || "ceo@paxway.org";
 
-    const html = `
+  const html = `
   <div style="font-family:'Inter','Segoe UI',Arial,sans-serif;background:#0d0d14;padding:40px 20px;">
     <div style="max-width:560px;margin:0 auto;background:#16162a;border-radius:16px;overflow:hidden;border:1px solid #2a2a3e;">
       <div style="background:linear-gradient(135deg,#6366f1,#06b6d4);padding:28px 32px;">
@@ -43,7 +43,7 @@ export async function sendContractEmail(data: ContractEmailData) {
           </ol>
         </div>
         <p style="color:#c4c4d4;font-size:14px;line-height:1.7;margin:0 0 24px;">
-          Questions? Reply to this email or reach us at <a href="mailto:hello@paxway.org" style="color:#6366f1;">hello@paxway.org</a>
+          Questions? Reply to this email or reach us at <a href="mailto:ceo@paxway.org" style="color:#6366f1;">ceo@paxway.org</a>
         </p>
         <div style="text-align:center;">
           <a href="https://paxway.org" style="display:inline-block;padding:12px 36px;background:linear-gradient(135deg,#6366f1,#06b6d4);color:#fff;text-decoration:none;border-radius:50px;font-weight:600;font-size:14px;">
@@ -58,26 +58,26 @@ export async function sendContractEmail(data: ContractEmailData) {
   </div>
   `;
 
-    const { data: result, error } = await getResend().emails.send({
-        from: "Paxway <noreply@paxway.org>",
-        to: [data.clientEmail],
-        bcc: [ownerEmail],
-        subject: `📄 Your Signed Paxway Service Agreement — ${tierLabel} Plan`,
-        html,
-        attachments: [
-            {
-                filename: `Paxway-Service-Agreement-${tierLabel}.pdf`,
-                content: data.pdfBuffer.toString("base64"),
-                contentType: "application/pdf",
-            },
-        ],
-    });
+  const { data: result, error } = await getResend().emails.send({
+    from: "Paxway <noreply@paxway.org>",
+    to: [data.clientEmail],
+    bcc: [ownerEmail],
+    subject: `📄 Your Signed Paxway Service Agreement — ${tierLabel} Plan`,
+    html,
+    attachments: [
+      {
+        filename: `Paxway-Service-Agreement-${tierLabel}.pdf`,
+        content: data.pdfBuffer.toString("base64"),
+        contentType: "application/pdf",
+      },
+    ],
+  });
 
-    if (error) {
-        console.error("Contract email send error:", error);
-        throw new Error(`Failed to send contract email: ${error.message}`);
-    }
+  if (error) {
+    console.error("Contract email send error:", error);
+    throw new Error(`Failed to send contract email: ${error.message}`);
+  }
 
-    console.log(`✉️  Signed contract emailed to ${data.clientEmail} (ID: ${result?.id})`);
-    return result;
+  console.log(`✉️  Signed contract emailed to ${data.clientEmail} (ID: ${result?.id})`);
+  return result;
 }

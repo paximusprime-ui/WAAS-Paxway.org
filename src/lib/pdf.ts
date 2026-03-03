@@ -53,7 +53,7 @@ export async function generateSignedContractPDF(data: ContractData): Promise<Buf
     page1.drawText("Website-as-a-Service", {
         x: 50, y: y - 62, size: 10, font, color: rgb(0.627, 0.627, 0.753),
     });
-    page1.drawText("paxway.org  •  hello@paxway.org", {
+    page1.drawText("paxway.org  •  ceo@paxway.org", {
         x: 50, y: y - 75, size: 8, font, color: rgb(0.627, 0.627, 0.753),
     });
 
@@ -126,7 +126,7 @@ export async function generateSignedContractPDF(data: ContractData): Promise<Buf
         "b) Website source code and infrastructure remain the property of Paxway during the active subscription period.",
         "c) Upon completion of the subscription term or cancellation, a full asset export (source code, assets, and data) will be",
         "   provided to the Client within 14 business days at no additional charge.",
-        "d) Client may request a copy of all project assets at any time during the subscription by emailing hello@paxway.org.",
+        "d) Client may request a copy of all project assets at any time during the subscription by emailing ceo@paxway.org.",
     ];
     ownershipTerms.forEach((term) => {
         page1.drawText(term, { x: 60, y, size: 9, font, color: rgb(0.333, 0.333, 0.333), maxWidth: w - 120 });
@@ -139,7 +139,7 @@ export async function generateSignedContractPDF(data: ContractData): Promise<Buf
     y -= 20;
     const cancelTerms = [
         "a) The Client may cancel their subscription at any time by providing 30 days written notice via email to",
-        "   hello@paxway.org. Cancellation takes effect at the end of the current billing period.",
+        "   ceo@paxway.org. Cancellation takes effect at the end of the current billing period.",
         "b) One-time setup fees are non-refundable once development has commenced (within 3 business days of payment).",
         "c) Monthly subscription fees are non-refundable for the current billing cycle. No partial-month refunds.",
         "d) If the Client cancels within the first 48 hours of purchase and before development begins, a full refund of the",
@@ -165,7 +165,7 @@ export async function generateSignedContractPDF(data: ContractData): Promise<Buf
         "d) Uptime Guarantee: Provider guarantees 99.9% uptime. Scheduled maintenance windows are excluded.",
         "e) Support: Email support during business hours (Mon-Fri, 9AM-6PM EST). Priority support on Grow and Dominate.",
         "f) Limitation of Liability: Paxway's total liability shall not exceed fees paid in the preceding 3 months.",
-        "g) Governing Law: This agreement is governed by the laws of the State of Delaware, USA.",
+        "g) Governing Law: This agreement is governed by the laws of the State of Wyoming, USA.",
     ];
     generalTerms.forEach((term) => {
         page1.drawText(term, { x: 60, y, size: 9, font, color: rgb(0.333, 0.333, 0.333), maxWidth: w - 120 });

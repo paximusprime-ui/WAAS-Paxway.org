@@ -231,7 +231,7 @@ function SuccessPageContent() {
                             Return Home
                         </a>
                         <a
-                            href="mailto:hello@paxway.org"
+                            href="mailto:ceo@paxway.org"
                             className="px-6 py-3 bg-gray-100 text-gray-700 rounded-2xl font-semibold text-sm hover:bg-gray-200 transition-all"
                         >
                             Contact Support
@@ -372,7 +372,7 @@ function SuccessPageContent() {
                                         <p>• You retain <strong>full ownership</strong> of all content, branding, logos, and proprietary materials you provide.</p>
                                         <p>• Website source code and infrastructure remain Paxway&apos;s property during the active subscription.</p>
                                         <p>• Upon cancellation, a <strong>complete asset export</strong> (source code, assets, data) is provided within 14 business days at no charge.</p>
-                                        <p>• You may request a copy of project assets at any time by emailing hello@paxway.org.</p>
+                                        <p>• You may request a copy of project assets at any time by emailing ceo@paxway.org.</p>
                                     </div>
                                 </motion.div>
                             )}
@@ -443,7 +443,7 @@ function SuccessPageContent() {
                                         <p>• <strong>99.9% uptime guarantee</strong> on all managed websites.</p>
                                         <p>• Email support Mon–Fri, 9AM–6PM EST. Priority support on Grow and Dominate plans.</p>
                                         <p>• Paxway&apos;s total liability shall not exceed fees paid in the preceding 3 months.</p>
-                                        <p>• Governed by the laws of the <strong>State of Delaware, USA</strong>.</p>
+                                        <p>• Governed by the laws of the <strong>State of Wyoming, USA</strong>.</p>
                                     </div>
                                 </motion.div>
                             )}
