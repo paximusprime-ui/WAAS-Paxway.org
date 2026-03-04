@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { ArrowLeft, Calendar, Clock, Tag } from "lucide-react";
 import Link from "next/link";
 import type { BlogPost } from "@/data/blog-posts";
@@ -15,10 +14,7 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
                 <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-teal-100/30 blur-[120px] rounded-full pointer-events-none -z-10" />
 
                 <div className="max-w-3xl mx-auto px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                    >
+                    <div className="hero-fade-in">
                         <Link
                             href="/blog"
                             className="inline-flex items-center gap-2 text-sm text-gray-400 hover:text-teal-600 transition-colors mb-8 group"
@@ -26,13 +22,11 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
                             <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
                             Back to Blog
                         </Link>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.05 }}
-                        className="flex flex-wrap items-center gap-4 mb-6"
+                    <div
+                        className="flex flex-wrap items-center gap-4 mb-6 hero-fade-in"
+                        style={{ animationDelay: "0.05s" }}
                     >
                         <span className="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-teal-600 bg-teal-50 px-3 py-1.5 rounded-full border border-teal-100">
                             <Tag className="w-3 h-3" /> {post.category}
@@ -43,31 +37,27 @@ export default function BlogPostClient({ post }: { post: BlogPost }) {
                         <span className="flex items-center gap-1.5 text-xs text-gray-400">
                             <Calendar className="w-3 h-3" /> {post.date}
                         </span>
-                    </motion.div>
+                    </div>
 
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 leading-tight"
+                    <h1
+                        className="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 leading-tight hero-fade-in"
+                        style={{ animationDelay: "0.1s" }}
                     >
                         {post.title}
-                    </motion.h1>
+                    </h1>
                 </div>
             </section>
 
             {/* Content */}
             <section className="w-full pb-20">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2 }}
-                    className="max-w-3xl mx-auto px-6"
+                <div
+                    className="max-w-3xl mx-auto px-6 hero-fade-in"
+                    style={{ animationDelay: "0.2s" }}
                 >
                     <div className="prose prose-lg prose-gray max-w-none prose-headings:text-gray-900 prose-headings:font-bold prose-h2:text-2xl prose-h2:mt-12 prose-h2:mb-4 prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-p:text-gray-500 prose-p:leading-relaxed prose-strong:text-gray-700 prose-li:text-gray-500 prose-a:text-teal-600 prose-a:no-underline hover:prose-a:underline prose-hr:border-gray-100 prose-table:text-sm prose-th:bg-gray-50 prose-th:p-3 prose-td:p-3 prose-th:text-left prose-table:border prose-table:border-gray-100 prose-tr:border-b prose-tr:border-gray-50 prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm prose-code:font-normal prose-code:before:content-none prose-code:after:content-none">
                         <ReactMarkdown>{post.content}</ReactMarkdown>
                     </div>
-                </motion.div>
+                </div>
             </section>
 
             {/* CTA */}

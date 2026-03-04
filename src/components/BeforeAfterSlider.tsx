@@ -1,13 +1,14 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
-import { motion } from "framer-motion";
+import { useRef, useState, useCallback } from "react";
+import { useReveal } from "@/hooks/useReveal";
 import { ArrowLeftRight } from "lucide-react";
 
 export default function BeforeAfterSlider() {
     const containerRef = useRef<HTMLDivElement>(null);
     const [position, setPosition] = useState(50); // percentage
     const [dragging, setDragging] = useState(false);
+    const revealRef = useReveal();
 
     const updatePosition = useCallback((clientX: number) => {
         const el = containerRef.current;
@@ -33,13 +34,7 @@ export default function BeforeAfterSlider() {
     }, []);
 
     return (
-        <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ type: "spring", stiffness: 80, damping: 18 }}
-            className="w-full"
-        >
+        <div ref={revealRef} className="w-full reveal">
             <div
                 ref={containerRef}
                 className="relative w-full aspect-[16/10] rounded-3xl overflow-hidden cursor-col-resize select-none touch-none border border-gray-200/50 dark:border-gray-700/50 shadow-xl"
@@ -153,6 +148,6 @@ export default function BeforeAfterSlider() {
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 }

@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useReveal } from "@/hooks/useReveal";
 import { Mail, MessageSquare, MapPin, Clock, Send, ArrowRight } from "lucide-react";
-import Link from "next/link";
 import BookingWidget from "@/components/BookingWidget";
 import { useState } from "react";
 
@@ -21,40 +20,28 @@ export default function ContactContent() {
         setSubmitted(true);
     };
 
+    const formRef = useReveal();
+    const infoRef = useReveal();
+
     return (
         <main className="flex min-h-screen flex-col items-center overflow-x-hidden pt-24">
             {/* Hero */}
             <section className="w-full py-20 relative overflow-hidden">
                 <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-cyan-100/50 blur-[150px] rounded-full pointer-events-none -z-10" />
                 <div className="max-w-5xl mx-auto px-6 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-50 border border-cyan-100 mb-6 text-cyan-600 text-xs font-bold uppercase tracking-widest"
-                    >
+                    <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-50 border border-cyan-100 mb-6 text-cyan-600 text-xs font-bold uppercase tracking-widest hero-fade-in">
                         <MessageSquare className="w-3.5 h-3.5" /> Get In Touch
-                    </motion.div>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl sm:text-6xl font-bold tracking-tight text-gray-900 mb-6"
-                    >
+                    </div>
+                    <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-gray-900 mb-6 hero-fade-in" style={{ animationDelay: "0.08s" }}>
                         Let&apos;s Talk About{" "}
                         <span className="bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 bg-clip-text text-transparent">
                             Your Project
                         </span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-gray-500 text-lg max-w-2xl mx-auto"
-                    >
+                    </h1>
+                    <p className="text-gray-500 text-lg max-w-2xl mx-auto hero-fade-in" style={{ animationDelay: "0.16s" }}>
                         Have questions? Ready to get started? Drop us a message and we&apos;ll get back to
                         you within 24 hours.
-                    </motion.p>
+                    </p>
                 </div>
             </section>
 
@@ -63,11 +50,9 @@ export default function ContactContent() {
                 <div className="max-w-6xl mx-auto px-6">
                     <div className="grid lg:grid-cols-5 gap-12">
                         {/* Form */}
-                        <motion.div
-                            initial={{ opacity: 0, x: -30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            className="lg:col-span-3 bg-white/90 backdrop-blur-xl rounded-3xl border border-white/60 shadow-xl p-8 sm:p-10"
+                        <div
+                            ref={formRef}
+                            className="lg:col-span-3 bg-white/90 backdrop-blur-xl rounded-3xl border border-white/60 shadow-xl p-8 sm:p-10 reveal"
                         >
                             {submitted ? (
                                 <div className="text-center py-12">
@@ -147,25 +132,20 @@ export default function ContactContent() {
                                             placeholder="Tell us about your project, goals, or any questions you have..."
                                         />
                                     </div>
-                                    <motion.button
+                                    <button
                                         type="submit"
-                                        whileHover={{ scale: 1.02, y: -2 }}
-                                        whileTap={{ scale: 0.98 }}
-                                        className="w-full py-4 rounded-2xl font-bold text-sm text-white bg-gradient-to-r from-teal-400 to-cyan-500 shadow-lg shadow-cyan-500/20 hover:shadow-xl transition-all flex items-center justify-center gap-2"
+                                        className="w-full py-4 rounded-2xl font-bold text-sm text-white bg-gradient-to-r from-teal-400 to-cyan-500 shadow-lg shadow-cyan-500/20 hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
                                     >
                                         Send Message <ArrowRight className="w-4 h-4" />
-                                    </motion.button>
+                                    </button>
                                 </form>
                             )}
-                        </motion.div>
+                        </div>
 
                         {/* Contact Info */}
-                        <motion.div
-                            initial={{ opacity: 0, x: 30 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ delay: 0.15 }}
-                            className="lg:col-span-2 space-y-6"
+                        <div
+                            ref={infoRef}
+                            className="lg:col-span-2 space-y-6 reveal delay-1"
                         >
                             {[
                                 {
@@ -206,7 +186,7 @@ export default function ContactContent() {
                             })}
 
                             <BookingWidget />
-                        </motion.div>
+                        </div>
                     </div>
                 </div>
             </section>

@@ -32,7 +32,7 @@ export default function SalonDemo() {
                         </div>
                     </div>
                     <div className="relative hidden lg:block">
-                        <Image src="/demos/demo-salon.png" alt="Luxe Beauty Studio showcase" fill className="object-cover" />
+                        <Image src="/demos/demo-salon.jpg" alt="Luxe Beauty Studio showcase" fill className="object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-r from-[#2D1B2E] via-transparent to-transparent" />
                     </div>
                 </div>

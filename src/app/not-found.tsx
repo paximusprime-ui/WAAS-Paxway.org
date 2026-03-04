@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { Home, ArrowRight, Search, AlertTriangle } from "lucide-react";
 
 const suggestions = [
@@ -21,25 +20,16 @@ export default function NotFound() {
 
             <div className="max-w-2xl w-full text-center">
                 {/* Animated 404 */}
-                <motion.div
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ type: "spring", stiffness: 100, damping: 15 }}
-                    className="mb-8"
-                >
+                <div className="mb-8 hero-fade-in">
                     <div className="inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-gradient-to-br from-teal-50 to-cyan-50 border border-teal-100/60 mb-6">
                         <AlertTriangle className="w-10 h-10 text-teal-500" />
                     </div>
                     <h1 className="text-8xl sm:text-9xl font-extrabold tracking-tighter bg-gradient-to-r from-teal-400 via-cyan-500 to-violet-500 bg-clip-text text-transparent leading-none">
                         404
                     </h1>
-                </motion.div>
+                </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.2, type: "spring", stiffness: 80 }}
-                >
+                <div className="hero-fade-in" style={{ animationDelay: "0.15s" }}>
                     <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
                         Page not found
                     </h2>
@@ -47,14 +37,12 @@ export default function NotFound() {
                         The page you&apos;re looking for doesn&apos;t exist or has been moved.
                         Let&apos;s get you back on track.
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Action buttons */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.35, type: "spring", stiffness: 80 }}
-                    className="flex flex-col sm:flex-row gap-3 justify-center mb-14"
+                <div
+                    className="flex flex-col sm:flex-row gap-3 justify-center mb-14 hero-fade-in"
+                    style={{ animationDelay: "0.3s" }}
                 >
                     <Link
                         href="/"
@@ -68,24 +56,19 @@ export default function NotFound() {
                     >
                         <Search className="w-4 h-4" /> Contact Us
                     </Link>
-                </motion.div>
+                </div>
 
                 {/* Suggested links */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, type: "spring", stiffness: 80 }}
-                >
+                <div className="hero-fade-in" style={{ animationDelay: "0.45s" }}>
                     <p className="text-xs font-bold uppercase tracking-widest text-gray-400 dark:text-gray-500 mb-5">
                         Popular Pages
                     </p>
                     <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-lg mx-auto">
                         {suggestions.map((s, i) => (
-                            <motion.div
+                            <div
                                 key={s.href}
-                                initial={{ opacity: 0, y: 15 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.55 + i * 0.06 }}
+                                className="hero-fade-in"
+                                style={{ animationDelay: `${0.5 + i * 0.06}s` }}
                             >
                                 <Link
                                     href={s.href}
@@ -97,10 +80,10 @@ export default function NotFound() {
                                     </span>
                                     <span className="text-xs text-gray-400 dark:text-gray-500">{s.desc}</span>
                                 </Link>
-                            </motion.div>
+                            </div>
                         ))}
                     </div>
-                </motion.div>
+                </div>
             </div>
         </main>
     );

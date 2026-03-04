@@ -20,7 +20,7 @@ export default function AutoShopDemo() {
             {/* Hero — Full width dark with red accent */}
             <section className="relative pt-16 min-h-[95vh] flex items-center overflow-hidden">
                 <div className="absolute inset-0">
-                    <Image src="/demos/demo-auto.png" alt="Apex Auto Repair shop" fill className="object-cover opacity-30" />
+                    <Image src="/demos/demo-auto.jpg" alt="Apex Auto Repair shop" fill className="object-cover opacity-30" />
                     <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-transparent" />
                     <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/50" />
                 </div>

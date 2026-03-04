@@ -19,7 +19,7 @@ export default function RealEstateDemo() {
 
             {/* Hero — Luxury wide with overlay */}
             <section className="relative pt-16 min-h-[90vh] flex items-center">
-                <div className="absolute inset-0"><Image src="/demos/demo-realestate.png" alt="Prestige Realty" fill className="object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-[#0C1F1D] via-[#0C1F1D]/85 to-[#0C1F1D]/40" /></div>
+                <div className="absolute inset-0"><Image src="/demos/demo-realestate.jpg" alt="Prestige Realty" fill className="object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-[#0C1F1D] via-[#0C1F1D]/85 to-[#0C1F1D]/40" /></div>
                 <div className="relative max-w-6xl mx-auto px-6 py-20">
                     <span className="text-emerald-400 text-xs font-bold uppercase tracking-[0.3em] block mb-6">Luxury Properties · Exceptional Results</span>
                     <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.08] mb-6 tracking-tight">Find Your<br />Dream <span className="text-emerald-400">Home.</span></h1>

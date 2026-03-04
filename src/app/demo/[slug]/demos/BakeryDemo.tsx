@@ -32,7 +32,7 @@ export default function BakeryDemo() {
                         </div>
                     </div>
                     <div className="relative hidden lg:block">
-                        <Image src="/demos/demo-bakery.png" alt="Golden Crust Bakery showcase" fill className="object-cover" />
+                        <Image src="/demos/demo-bakery.jpg" alt="Golden Crust Bakery showcase" fill className="object-cover" />
                         <div className="absolute inset-0 bg-gradient-to-r from-[#5C3D2E] via-transparent to-transparent" />
                     </div>
                 </div>

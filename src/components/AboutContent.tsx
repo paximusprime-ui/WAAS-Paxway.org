@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useReveal } from "@/hooks/useReveal";
 import { Heart, Target, Shield, Users, ArrowRight, Sparkles } from "lucide-react";
 import Link from "next/link";
 
@@ -71,6 +71,12 @@ const values = [
 ];
 
 export default function AboutContent() {
+    const heroRef = useReveal();
+    const storyRef = useReveal();
+    const comparisonHeaderRef = useReveal();
+    const comparisonTableRef = useReveal();
+    const differenceRef = useReveal();
+
     return (
         <main className="flex min-h-screen flex-col items-center overflow-x-hidden pt-24">
             {/* Hero */}
@@ -78,12 +84,7 @@ export default function AboutContent() {
                 <div className="absolute top-0 right-1/4 w-[500px] h-[500px] bg-violet-100/50 blur-[150px] rounded-full pointer-events-none -z-10" />
                 <div className="absolute bottom-0 left-1/4 w-[400px] h-[400px] bg-teal-100/40 blur-[120px] rounded-full pointer-events-none -z-10" />
                 <div className="max-w-4xl mx-auto px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ type: "spring", stiffness: 80, damping: 20 }}
-                        className="text-center"
-                    >
+                    <div ref={heroRef} className="text-center reveal">
                         <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-violet-50 border border-violet-100 mb-8 text-violet-600 text-xs font-bold uppercase tracking-widest">
                             <Sparkles className="w-3.5 h-3.5" /> Our Story
                         </div>
@@ -93,14 +94,9 @@ export default function AboutContent() {
                                 Stay Invisible
                             </span>
                         </h1>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.15, type: "spring", stiffness: 80, damping: 20 }}
-                        className="max-w-3xl mx-auto space-y-6 text-gray-500 text-lg leading-relaxed"
-                    >
+                    <div ref={storyRef} className="max-w-3xl mx-auto space-y-6 text-gray-500 text-lg leading-relaxed reveal delay-1">
                         <p>
                             <strong className="text-gray-800">Paxway was born from a simple but very common frustration</strong> I saw every single day:
                         </p>
@@ -116,32 +112,21 @@ export default function AboutContent() {
                         <p className="text-xl font-semibold bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
                             So I built Paxway to change that reality.
                         </p>
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
             {/* Comparison Table */}
             <section className="w-full py-20 bg-gray-50/50">
                 <div className="max-w-5xl mx-auto px-6">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-center mb-12"
-                    >
+                    <div ref={comparisonHeaderRef} className="text-center mb-12 reveal">
                         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
                             Here&apos;s the Real Difference
                         </h2>
                         <p className="text-gray-500 text-lg">What most business owners actually experience.</p>
-                    </motion.div>
+                    </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="bg-white/90 backdrop-blur-xl rounded-3xl border border-white/60 shadow-xl overflow-hidden"
-                    >
+                    <div ref={comparisonTableRef} className="bg-white/90 backdrop-blur-xl rounded-3xl border border-white/60 shadow-xl overflow-hidden reveal delay-1">
                         {/* Table Header */}
                         <div className="grid grid-cols-4 text-sm font-bold border-b border-gray-100">
                             <div className="p-5 text-gray-400 uppercase tracking-wider text-xs">Feature</div>
@@ -156,12 +141,8 @@ export default function AboutContent() {
 
                         {/* Table Rows */}
                         {comparisonData.map((row, i) => (
-                            <motion.div
+                            <div
                                 key={i}
-                                initial={{ opacity: 0, x: -10 }}
-                                whileInView={{ opacity: 1, x: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.05 * i }}
                                 className={`grid grid-cols-4 text-sm ${i < comparisonData.length - 1 ? "border-b border-gray-50" : ""
                                     } hover:bg-teal-50/30 transition-colors`}
                             >
@@ -172,21 +153,16 @@ export default function AboutContent() {
                                     }`}>
                                     {row.paxway}
                                 </div>
-                            </motion.div>
+                            </div>
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
             {/* The Real Difference */}
             <section className="w-full py-20">
                 <div className="max-w-3xl mx-auto px-6 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="space-y-6"
-                    >
+                    <div ref={differenceRef} className="space-y-6 reveal">
                         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900">
                             We don&apos;t just build pretty websites.
                         </h2>
@@ -200,7 +176,7 @@ export default function AboutContent() {
                                 Paxway was made for you.
                             </span>
                         </p>
-                    </motion.div>
+                    </div>
                 </div>
             </section>
 
@@ -212,21 +188,7 @@ export default function AboutContent() {
                         {values.map((value, i) => {
                             const Icon = value.icon;
                             return (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, y: 40 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.1 }}
-                                    whileHover={{ y: -8 }}
-                                    className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/60 shadow-lg p-6 text-center cursor-pointer group"
-                                >
-                                    <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                                        <Icon className="w-7 h-7 text-white" />
-                                    </div>
-                                    <h3 className="font-bold text-gray-900 mb-2">{value.title}</h3>
-                                    <p className="text-sm text-gray-500 leading-relaxed">{value.description}</p>
-                                </motion.div>
+                                <ValueCard key={i} icon={Icon} title={value.title} description={value.description} index={i} />
                             );
                         })}
                     </div>
@@ -257,5 +219,21 @@ export default function AboutContent() {
                 </div>
             </section>
         </main>
+    );
+}
+
+function ValueCard({ icon: Icon, title, description, index }: { icon: typeof Target; title: string; description: string; index: number }) {
+    const ref = useReveal();
+    return (
+        <div
+            ref={ref}
+            className={`bg-white/90 backdrop-blur-xl rounded-2xl border border-white/60 shadow-lg p-6 text-center cursor-pointer group hover-lift reveal delay-${index + 1}`}
+        >
+            <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                <Icon className="w-7 h-7 text-white" />
+            </div>
+            <h3 className="font-bold text-gray-900 mb-2">{title}</h3>
+            <p className="text-sm text-gray-500 leading-relaxed">{description}</p>
+        </div>
     );
 }

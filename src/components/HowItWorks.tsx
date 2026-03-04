@@ -1,6 +1,6 @@
 "use client";
 
-import { motion, Variants } from "framer-motion";
+import { useReveal } from "@/hooks/useReveal";
 import { Search, Paintbrush, Rocket } from "lucide-react";
 
 const steps = [
@@ -39,20 +39,10 @@ const steps = [
     },
 ];
 
-const stepVariants: Variants = {
-    hidden: { opacity: 0, y: 60, scale: 0.9, rotateX: 8 },
-    visible: (i: number) => ({
-        opacity: 1, y: 0, scale: 1, rotateX: 0,
-        transition: {
-            type: "spring",
-            stiffness: 100,
-            damping: 15,
-            delay: i * 0.2,
-        },
-    }),
-};
-
 export default function HowItWorks() {
+    const headerRef = useReveal();
+    const gridRef = useReveal();
+
     return (
         <section id="how-it-works" className="w-full py-28 relative overflow-hidden">
             {/* Ambient blobs */}
@@ -63,22 +53,10 @@ export default function HowItWorks() {
             <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] bg-violet-100/40 blur-[120px] rounded-full pointer-events-none -z-10" />
 
             <div className="max-w-6xl mx-auto px-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 80, damping: 20 }}
-                    className="text-center mb-20"
-                >
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-50 border border-cyan-100 mb-6 text-cyan-600 text-xs font-bold uppercase tracking-widest"
-                    >
+                <div ref={headerRef} className="text-center mb-20 reveal">
+                    <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-50 border border-cyan-100 mb-6 text-cyan-600 text-xs font-bold uppercase tracking-widest">
                         <Rocket className="w-3.5 h-3.5" /> How It Works
-                    </motion.div>
+                    </div>
                     <h2 className="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-4">
                         The Simple Path to{" "}
                         <span className="bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 bg-clip-text text-transparent">
@@ -88,28 +66,18 @@ export default function HowItWorks() {
                     <p className="text-gray-500 text-lg max-w-2xl mx-auto">
                         Three clear steps to a professional website that actually brings you real business.
                     </p>
-                </motion.div>
+                </div>
 
-                <div className="grid md:grid-cols-3 gap-8 relative">
+                <div ref={gridRef} className="grid md:grid-cols-3 gap-8 relative reveal">
                     {/* Connecting line (desktop only) */}
                     <div className="hidden md:block absolute top-[70px] left-[16.66%] right-[16.66%] h-[3px] rounded-full bg-gradient-to-r from-cyan-200 via-violet-200 to-teal-200" />
 
                     {steps.map((step, i) => {
                         const Icon = step.icon;
                         return (
-                            <motion.div
+                            <div
                                 key={i}
-                                custom={i}
-                                variants={stepVariants}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: "-80px" }}
-                                whileHover={{
-                                    y: -12,
-                                    scale: 1.03,
-                                    transition: { type: "spring" as const, stiffness: 300, damping: 20 },
-                                }}
-                                className="relative bubble-card-elevated p-8 cursor-pointer group"
+                                className={`relative bubble-card-elevated p-8 cursor-pointer group hover-lift delay-${i + 1}`}
                             >
                                 {/* Soft glow behind card */}
                                 <div
@@ -118,12 +86,9 @@ export default function HowItWorks() {
 
                                 {/* Step Number + Icon */}
                                 <div className="flex items-center gap-4 mb-6">
-                                    <motion.div
-                                        className={`w-16 h-16 rounded-2xl ${step.color} flex items-center justify-center`}
-                                        whileHover={{ rotate: [0, -5, 5, 0], transition: { duration: 0.5 } }}
-                                    >
+                                    <div className={`w-16 h-16 rounded-2xl ${step.color} flex items-center justify-center group-hover:rotate-[-5deg] transition-transform`}>
                                         <Icon className={`w-7 h-7 ${step.iconColor}`} />
-                                    </motion.div>
+                                    </div>
                                     <span className="text-5xl font-black text-gray-100 tracking-tighter select-none">
                                         {step.number}
                                     </span>
@@ -133,15 +98,11 @@ export default function HowItWorks() {
                                 <p className="text-gray-500 leading-relaxed">{step.description}</p>
 
                                 {/* Bottom accent bar */}
-                                <motion.div
-                                    className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${step.accent} rounded-b-2xl`}
-                                    initial={{ scaleX: 0 }}
-                                    whileInView={{ scaleX: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.8, delay: 0.3 + i * 0.2, ease: "easeOut" }}
-                                    style={{ transformOrigin: "left" }}
+                                <div
+                                    className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${step.accent} rounded-b-2xl bar-grow`}
+                                    style={{ "--bar-width": "100%" } as React.CSSProperties}
                                 />
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </div>

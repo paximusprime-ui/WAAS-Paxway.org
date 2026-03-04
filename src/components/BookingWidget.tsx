@@ -1,16 +1,14 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useReveal } from "@/hooks/useReveal";
 import { Calendar, ArrowRight, Clock, CheckCircle2 } from "lucide-react";
 
 export default function BookingWidget() {
+    const ref = useReveal();
     return (
-        <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 text-center relative overflow-hidden"
+        <div
+            ref={ref}
+            className="bg-gradient-to-br from-gray-900 to-gray-800 rounded-3xl p-8 text-center relative overflow-hidden reveal"
         >
             {/* Subtle glow */}
             <div className="absolute top-0 right-0 w-40 h-40 bg-teal-500/10 blur-[60px] rounded-full pointer-events-none" />
@@ -55,6 +53,6 @@ export default function BookingWidget() {
                     ceo@paxway.org
                 </a>
             </p>
-        </motion.div>
+        </div>
     );
 }

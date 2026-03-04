@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
-import { motion, Variants } from "framer-motion";
+import { useReveal } from "@/hooks/useReveal";
 import { Gauge, TrendingUp, MapPin, UserPlus, ArrowRight, Sparkles } from "lucide-react";
 
 /* ── Animated count-up ── */
@@ -99,20 +99,11 @@ const metrics = [
     },
 ];
 
-const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 60, scale: 0.88 },
-    visible: (i: number) => ({
-        opacity: 1, y: 0, scale: 1,
-        transition: {
-            type: "spring",
-            stiffness: 100,
-            damping: 16,
-            delay: 0.15 + i * 0.12,
-        },
-    }),
-};
-
 export default function Analytics() {
+    const headerRef = useReveal();
+    const gridRef = useReveal();
+    const ctaRef = useReveal();
+
     return (
         <section id="analytics" className="w-full py-28 relative overflow-hidden">
             {/* Ambient blobs */}
@@ -122,22 +113,10 @@ export default function Analytics() {
 
             <div className="max-w-7xl mx-auto px-6">
                 {/* ── Header ── */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 80, damping: 20 }}
-                    className="text-center max-w-3xl mx-auto mb-16"
-                >
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ type: "spring", stiffness: 200, damping: 15, delay: 0.1 }}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-teal-50 border border-teal-100 text-teal-600 text-xs font-bold uppercase tracking-widest mb-6"
-                    >
+                <div ref={headerRef} className="text-center max-w-3xl mx-auto mb-16 reveal">
+                    <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-teal-50 border border-teal-100 text-teal-600 text-xs font-bold uppercase tracking-widest mb-6">
                         <Sparkles className="w-3.5 h-3.5" /> Real Results
-                    </motion.div>
+                    </div>
                     <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 mb-5 leading-tight">
                         Real Performance for{" "}
                         <span className="bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 bg-clip-text text-transparent">
@@ -149,36 +128,22 @@ export default function Analytics() {
                         Every Paxway site is built to load instantly, rank higher in Google, and turn visitors
                         into paying clients.
                     </p>
-                </motion.div>
+                </div>
 
                 {/* ── Floating metric cards ── */}
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div ref={gridRef} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 reveal">
                     {metrics.map((metric, i) => {
                         const Icon = metric.icon;
                         return (
-                            <motion.div
+                            <div
                                 key={metric.label}
-                                custom={i}
-                                variants={cardVariants}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: "-60px" }}
-                                whileHover={{
-                                    y: -14,
-                                    scale: 1.03,
-                                    boxShadow: "0 24px 60px -12px rgba(0,0,0,0.12)",
-                                    transition: { type: "spring" as const, stiffness: 300, damping: 20 },
-                                }}
-                                className="relative bg-white/90 backdrop-blur-xl rounded-3xl p-7 border border-white/80 shadow-xl shadow-gray-200/40 cursor-pointer group"
+                                className={`relative bg-white/90 backdrop-blur-xl rounded-3xl p-7 border border-white/80 shadow-xl shadow-gray-200/40 cursor-pointer group hover-lift delay-${i + 1}`}
                             >
                                 {/* Icon + Badge row */}
                                 <div className="flex justify-between items-start mb-5">
-                                    <motion.div
-                                        className={`w-14 h-14 rounded-2xl ${metric.iconBg} flex items-center justify-center shadow-sm`}
-                                        whileHover={{ rotate: [0, -10, 10, 0], transition: { duration: 0.4 } }}
-                                    >
+                                    <div className={`w-14 h-14 rounded-2xl ${metric.iconBg} flex items-center justify-center shadow-sm group-hover:rotate-[-5deg] transition-transform`}>
                                         <Icon className={`w-6 h-6 ${metric.iconColor}`} />
-                                    </motion.div>
+                                    </div>
                                     <span className={`text-[11px] font-bold px-3 py-1.5 rounded-full border ${metric.badgeColor}`}>
                                         {metric.badge}
                                     </span>
@@ -197,39 +162,28 @@ export default function Analytics() {
 
                                 {/* Animated progress bar */}
                                 <div className="h-2 rounded-full bg-gray-100 overflow-hidden">
-                                    <motion.div
-                                        initial={{ width: 0 }}
-                                        whileInView={{ width: metric.barWidth }}
-                                        viewport={{ once: true }}
-                                        transition={{ duration: 1.6, delay: 0.5 + i * 0.15, ease: "easeOut" }}
-                                        className={`h-full rounded-full ${metric.barColor}`}
+                                    <div
+                                        className={`h-full rounded-full bar-grow ${metric.barColor}`}
+                                        style={{ "--bar-width": metric.barWidth } as React.CSSProperties}
                                     />
                                 </div>
 
                                 {/* Hover glow */}
                                 <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-teal-500/5 to-violet-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </div>
 
                 {/* CTA */}
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 80, damping: 18, delay: 0.6 }}
-                    className="text-center mt-14"
-                >
-                    <motion.a
+                <div ref={ctaRef} className="text-center mt-14 reveal">
+                    <a
                         href="/portfolio"
-                        whileHover={{ scale: 1.05, y: -2 }}
-                        whileTap={{ scale: 0.98 }}
-                        className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 hover:shadow-lg hover:shadow-cyan-400/25 transition-all"
+                        className="inline-flex items-center gap-2 px-8 py-4 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 hover:shadow-lg hover:shadow-cyan-400/25 hover:scale-105 hover:-translate-y-0.5 transition-all"
                     >
                         See Our Work <ArrowRight className="w-4 h-4" />
-                    </motion.a>
-                </motion.div>
+                    </a>
+                </div>
             </div>
         </section>
     );

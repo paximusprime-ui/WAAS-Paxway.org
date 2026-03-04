@@ -1,6 +1,7 @@
 "use client";
 
-import { motion, Variants, AnimatePresence } from "framer-motion";
+import { useReveal } from "@/hooks/useReveal";
+import { motion, AnimatePresence } from "framer-motion";
 import {
     Check, Sparkles, Zap, Monitor, CreditCard, Search, Gauge,
     RefreshCcw, Shield, Headphones, ChevronDown, Brain, Database,
@@ -40,14 +41,10 @@ const tiers = [
             { icon: Headphones, title: "Support", description: "Standard email support with 48-hour response time." },
         ] as BreakdownItem[],
         popular: false,
-        // Yellow theme
         accent: "from-yellow-400 to-amber-500",
         checkColor: "text-yellow-500",
         glowColor: "shadow-yellow-400/30",
-        glowHover: "hover:shadow-yellow-400/50",
         borderColor: "border-yellow-200/60",
-        badgeBg: "bg-yellow-50",
-        badgeBorder: "border-yellow-200",
         badgeText: "text-yellow-600",
         btnBg: "bg-gradient-to-r from-yellow-400 to-amber-500 hover:from-yellow-300 hover:to-amber-400",
         btnShadow: "shadow-yellow-500/20",
@@ -72,20 +69,16 @@ const tiers = [
             { icon: Monitor, title: "Design & Build", description: "Everything in Launch, plus up to 10 pages, custom dashboard UI for your clients, and interactive elements (forms, calculators, maps)." },
             { icon: UserCog, title: "Authentication", description: "User login/signup flows with secure session management. Role-based access control for different user types." },
             { icon: Search, title: "Advanced SEO", description: "Keyword research, structured data (JSON-LD), Google Business Profile + Yelp setup, local SEO optimization, and monthly ranking reports." },
-            { icon: BarChart3, title: "Analytics", description: "Google Analytics 4 integration, custom event tracking, and a monthly performance report delivered to your inbox." },
+            { icon: BarChart3, title: "Analytics", description: "Google Analytics 4 integration and custom event tracking." },
             { icon: RefreshCcw, title: "Revisions", description: "3 design or content revisions per month. Additional revisions available at $50 each." },
             { icon: Shield, title: "Hosting & Security", description: "Everything in Launch, plus WAF (Web Application Firewall), rate limiting, and security header hardening." },
             { icon: Headphones, title: "Support", description: "Priority email + Slack support with 24-hour response time. Dedicated Slack channel for your team." },
         ] as BreakdownItem[],
         popular: true,
-        // Green theme
         accent: "from-emerald-400 to-green-500",
         checkColor: "text-emerald-500",
         glowColor: "shadow-emerald-400/30",
-        glowHover: "hover:shadow-emerald-400/50",
         borderColor: "border-emerald-200/60",
-        badgeBg: "bg-emerald-50",
-        badgeBorder: "border-emerald-200",
         badgeText: "text-emerald-600",
         btnBg: "bg-gradient-to-r from-emerald-500 to-green-500 hover:from-emerald-400 hover:to-green-400",
         btnShadow: "shadow-emerald-500/20",
@@ -116,14 +109,10 @@ const tiers = [
             { icon: Headphones, title: "Support", description: "Dedicated technical partner. Direct line. Same-day response. Strategic quarterly reviews." },
         ] as BreakdownItem[],
         popular: false,
-        // Purple theme
         accent: "from-violet-400 to-purple-600",
         checkColor: "text-violet-500",
         glowColor: "shadow-violet-400/30",
-        glowHover: "hover:shadow-violet-400/50",
         borderColor: "border-violet-200/60",
-        badgeBg: "bg-violet-50",
-        badgeBorder: "border-violet-200",
         badgeText: "text-violet-600",
         btnBg: "bg-gradient-to-r from-violet-500 to-purple-600 hover:from-violet-400 hover:to-purple-500",
         btnShadow: "shadow-violet-500/20",
@@ -131,26 +120,15 @@ const tiers = [
     },
 ];
 
-const cardVariants: Variants = {
-    hidden: { opacity: 0, y: 60, scale: 0.88 },
-    visible: (i: number) => ({
-        opacity: 1,
-        y: 0,
-        scale: 1,
-        transition: {
-            type: "spring",
-            stiffness: 100,
-            damping: 14,
-            delay: i * 0.15,
-        },
-    }),
-};
-
 export default function Pricing() {
     const [isBoosterAdded, setIsBoosterAdded] = useState(false);
     const [isLoading, setIsLoading] = useState<string | null>(null);
     const [selectedTier, setSelectedTier] = useState<string | null>("grow");
     const [expandedTier, setExpandedTier] = useState<string | null>(null);
+
+    const headerRef = useReveal();
+    const gridRef = useReveal();
+    const addonRef = useReveal();
 
     const handleCheckout = async (tierId: string) => {
         try {
@@ -177,45 +155,21 @@ export default function Pricing() {
             <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-violet-100/30 blur-[120px] rounded-full pointer-events-none -z-10" />
 
             <div className="max-w-7xl mx-auto px-6">
-                <div className="text-center mb-20">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                        className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 rounded-full bg-cyan-50 border border-cyan-100 mb-6 text-cyan-600 text-xs font-bold uppercase tracking-widest"
-                    >
+                <div ref={headerRef} className="text-center mb-20 reveal">
+                    <div className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 rounded-full bg-cyan-50 border border-cyan-100 mb-6 text-cyan-600 text-xs font-bold uppercase tracking-widest">
                         <Sparkles className="w-3.5 h-3.5" />
                         <span>Transparent Pricing</span>
-                    </motion.div>
-                    <motion.h2
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.1 }}
-                        className="text-4xl sm:text-6xl font-bold tracking-tight text-gray-900 mb-6"
-                    >
+                    </div>
+                    <h2 className="text-4xl sm:text-6xl font-bold tracking-tight text-gray-900 mb-6">
                         Invest in an Engine. <br />
                         <span className="bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 bg-clip-text text-transparent">
                             Stop Paying Rent.
                         </span>
-                    </motion.h2>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ type: "spring", stiffness: 80, damping: 20, delay: 0.2 }}
-                        className="text-gray-500 text-lg max-w-2xl mx-auto mb-8"
-                    >
+                    </h2>
+                    <p className="text-gray-500 text-lg max-w-2xl mx-auto mb-8">
                         One-time payment for the heavy lifting. Low monthly retainer for hosting, maintenance, and scale. No hidden fees.
-                    </motion.p>
-                    <motion.div
-                        initial={{ opacity: 0, y: 15 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 }}
-                        className="flex flex-wrap justify-center gap-4"
-                    >
+                    </p>
+                    <div className="flex flex-wrap justify-center gap-4">
                         <a
                             href="/contact"
                             className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-bold text-sm bg-gradient-to-r from-teal-400 to-cyan-500 shadow-lg shadow-cyan-500/20 hover:shadow-xl hover:-translate-y-0.5 transition-all"
@@ -228,32 +182,22 @@ export default function Pricing() {
                         >
                             Compare Plans ↓
                         </a>
-                    </motion.div>
+                    </div>
                 </div>
 
-                <div id="pricing-cards" className="grid lg:grid-cols-3 gap-8 items-start">
+                <div ref={gridRef} id="pricing-cards" className="grid lg:grid-cols-3 gap-8 items-start reveal">
                     {tiers.map((tier, i) => {
                         const isSelected = selectedTier === tier.id;
 
                         return (
-                            <motion.div
+                            <div
                                 key={tier.name}
-                                custom={i}
-                                variants={cardVariants}
-                                initial="hidden"
-                                whileInView="visible"
-                                viewport={{ once: true, margin: "-50px" }}
-                                whileHover={{
-                                    y: -10,
-                                    scale: 1.03,
-                                    transition: { type: "spring" as const, stiffness: 280, damping: 20 },
-                                }}
                                 onClick={() => {
                                     setSelectedTier(tier.id);
                                     setExpandedTier(expandedTier === tier.id ? null : tier.id);
                                 }}
-                                className={`relative rounded-3xl p-8 cursor-pointer transition-all duration-500 
-                                    bg-white/90 backdrop-blur-xl border-2
+                                className={`relative rounded-3xl p-8 cursor-pointer transition-all duration-500 hover-lift
+                                    bg-white/90 backdrop-blur-xl border-2 delay-${i + 1}
                                     ${isSelected
                                         ? `${tier.borderColor} shadow-2xl ${tier.glowColor} ring-2 ${tier.ringColor}`
                                         : "border-white/60 shadow-xl shadow-gray-200/30 hover:shadow-xl"
@@ -261,19 +205,13 @@ export default function Pricing() {
                                     ${tier.popular ? "lg:scale-105 z-10" : ""}
                                 `}
                             >
-                                {/* Most Popular badge — positioned well above card */}
+                                {/* Most Popular badge */}
                                 {tier.popular && (
-                                    <motion.div
-                                        initial={{ opacity: 0, scale: 0, y: 10 }}
-                                        whileInView={{ opacity: 1, scale: 1, y: 0 }}
-                                        viewport={{ once: true }}
-                                        transition={{ type: "spring", stiffness: 300, damping: 15, delay: 0.3 }}
-                                        className="absolute -top-5 left-1/2 -translate-x-1/2 z-20"
-                                    >
+                                    <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20">
                                         <div className="bg-gradient-to-r from-emerald-500 to-green-500 text-white text-xs font-bold px-6 py-2.5 rounded-full uppercase tracking-widest shadow-lg shadow-emerald-500/30 whitespace-nowrap">
                                             ⭐ Most Popular
                                         </div>
-                                    </motion.div>
+                                    </div>
                                 )}
 
                                 {/* Glow backdrop when selected */}
@@ -306,37 +244,29 @@ export default function Pricing() {
                                     {/* Features */}
                                     <ul className="space-y-4 mb-8">
                                         {tier.features.map((feature, j) => (
-                                            <motion.li
-                                                key={j}
-                                                initial={{ opacity: 0, x: -10 }}
-                                                whileInView={{ opacity: 1, x: 0 }}
-                                                viewport={{ once: true }}
-                                                transition={{ delay: 0.4 + j * 0.05 + i * 0.1 }}
-                                                className="flex gap-3 text-gray-600"
-                                            >
+                                            <li key={j} className="flex gap-3 text-gray-600">
                                                 <Check className={`w-5 h-5 shrink-0 ${tier.checkColor}`} />
                                                 <span className="text-sm leading-tight">{feature}</span>
-                                            </motion.li>
+                                            </li>
                                         ))}
                                     </ul>
 
                                     {/* "See Full Breakdown" toggle */}
                                     <div className="flex items-center justify-center mb-4">
-                                        <motion.span
-                                            className={`text-xs font-semibold flex items-center gap-1 ${tier.badgeText} cursor-pointer select-none`}
-                                            whileHover={{ scale: 1.05 }}
+                                        <span
+                                            className={`text-xs font-semibold flex items-center gap-1 ${tier.badgeText} cursor-pointer select-none hover:scale-105 transition-transform`}
                                         >
                                             {expandedTier === tier.id ? "Hide Details" : "See Full Breakdown"}
-                                            <motion.span
-                                                animate={{ rotate: expandedTier === tier.id ? 180 : 0 }}
-                                                transition={{ duration: 0.3 }}
+                                            <span
+                                                className="inline-block transition-transform duration-300"
+                                                style={{ transform: expandedTier === tier.id ? "rotate(180deg)" : "rotate(0)" }}
                                             >
                                                 <ChevronDown className="w-3.5 h-3.5" />
-                                            </motion.span>
-                                        </motion.span>
+                                            </span>
+                                        </span>
                                     </div>
 
-                                    {/* Expandable Breakdown Panel */}
+                                    {/* Expandable Breakdown Panel — keeping AnimatePresence for interactive accordion only */}
                                     <AnimatePresence>
                                         {expandedTier === tier.id && (
                                             <motion.div
@@ -351,13 +281,7 @@ export default function Pricing() {
                                                     {tier.breakdown.map((item: BreakdownItem, k: number) => {
                                                         const BIcon = item.icon;
                                                         return (
-                                                            <motion.div
-                                                                key={k}
-                                                                initial={{ opacity: 0, x: -10 }}
-                                                                animate={{ opacity: 1, x: 0 }}
-                                                                transition={{ delay: k * 0.04 }}
-                                                                className="flex gap-3"
-                                                            >
+                                                            <div key={k} className="flex gap-3">
                                                                 <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${tier.accent} flex items-center justify-center shrink-0 mt-0.5`}>
                                                                     <BIcon className="w-4 h-4 text-white" />
                                                                 </div>
@@ -365,10 +289,10 @@ export default function Pricing() {
                                                                     <p className="text-sm font-semibold text-gray-900">{item.title}</p>
                                                                     <p className="text-xs text-gray-500 leading-relaxed">{item.description}</p>
                                                                 </div>
-                                                            </motion.div>
+                                                            </div>
                                                         );
                                                     })}
-                                                    <div className={`mt-4 pt-4 border-t border-dashed border-gray-200`}>
+                                                    <div className="mt-4 pt-4 border-t border-dashed border-gray-200">
                                                         <p className="text-xs text-gray-500 italic">💡 {tier.bestFor}</p>
                                                     </div>
                                                 </div>
@@ -377,47 +301,33 @@ export default function Pricing() {
                                     </AnimatePresence>
 
                                     {/* CTA Button */}
-                                    <motion.button
+                                    <button
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             handleCheckout(tier.id);
                                         }}
                                         disabled={isLoading === tier.id}
-                                        whileHover={{ scale: 1.04, y: -2 }}
-                                        whileTap={{ scale: 0.97 }}
-                                        className={`w-full py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all text-sm text-white shadow-lg ${tier.btnBg} ${tier.btnShadow}`}
+                                        className={`w-full py-4 rounded-2xl font-bold flex items-center justify-center gap-2 transition-all text-sm text-white shadow-lg hover:scale-[1.04] hover:-translate-y-0.5 active:scale-[0.97] ${tier.btnBg} ${tier.btnShadow}`}
                                     >
                                         {isLoading === tier.id ? "Loading..." : "Get Started"}{" "}
                                         <Zap className="w-4 h-4" />
-                                    </motion.button>
+                                    </button>
                                 </div>
 
                                 {/* Bottom accent bar */}
-                                <motion.div
-                                    className={`absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r ${tier.accent} rounded-b-3xl`}
-                                    initial={{ scaleX: 0 }}
-                                    whileInView={{ scaleX: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ duration: 0.8, delay: 0.4 + i * 0.15, ease: "easeOut" }}
-                                    style={{ transformOrigin: "left" }}
+                                <div
+                                    className={`absolute bottom-0 left-0 right-0 h-1.5 bg-gradient-to-r ${tier.accent} rounded-b-3xl bar-grow`}
+                                    style={{ "--bar-width": "100%" } as React.CSSProperties}
                                 />
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </div>
 
                 {/* Optional add-on */}
-                <motion.div
-                    initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring" as const, stiffness: 100, damping: 18 }}
-                    whileHover={{
-                        y: -6,
-                        scale: 1.02,
-                        transition: { type: "spring" as const, stiffness: 300, damping: 20 },
-                    }}
-                    className="mt-16 max-w-3xl mx-auto bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-white/60 shadow-xl shadow-gray-200/30 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 cursor-pointer"
+                <div
+                    ref={addonRef}
+                    className="mt-16 max-w-3xl mx-auto bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-white/60 shadow-xl shadow-gray-200/30 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 cursor-pointer hover-lift reveal"
                 >
                     <div>
                         <div className="inline-flex items-center gap-2 text-cyan-600 font-bold mb-2 uppercase tracking-wider text-xs">
@@ -433,19 +343,17 @@ export default function Pricing() {
                         <div className="text-2xl font-bold text-gray-900">
                             $199<span className="text-sm text-gray-400 font-medium">/mo</span>
                         </div>
-                        <motion.button
+                        <button
                             onClick={() => setIsBoosterAdded(!isBoosterAdded)}
-                            whileHover={{ scale: 1.05 }}
-                            whileTap={{ scale: 0.95 }}
-                            className={`mt-2 text-sm font-semibold transition-colors px-5 py-2.5 rounded-full border ${isBoosterAdded
+                            className={`mt-2 text-sm font-semibold transition-all px-5 py-2.5 rounded-full border hover:scale-105 active:scale-95 ${isBoosterAdded
                                 ? "border-cyan-500 bg-cyan-50 text-cyan-600"
                                 : "border-gray-200 text-cyan-600 hover:bg-gray-50"
                                 }`}
                         >
                             {isBoosterAdded ? "✓ Added to plan" : "+ Add to plan in checkout"}
-                        </motion.button>
+                        </button>
                     </div>
-                </motion.div>
+                </div>
             </div>
         </section>
     );

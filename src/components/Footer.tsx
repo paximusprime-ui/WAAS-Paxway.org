@@ -3,7 +3,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import { Facebook, Twitter, Linkedin } from "lucide-react";
-import { motion } from "framer-motion";
 
 export default function Footer() {
     return (
@@ -74,15 +73,13 @@ export default function Footer() {
                             { Icon: Twitter, href: "https://x.com/paxwayorg", label: "Follow Paxway on X" },
                             { Icon: Linkedin, href: "https://linkedin.com/company/paxway", label: "Follow Paxway on LinkedIn" },
                         ].map(({ Icon, href, label }) => (
-                            <motion.a
+                            <a
                                 key={href}
                                 href={href}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 aria-label={label}
-                                whileHover={{ y: -3, scale: 1.1 }}
-                                transition={{ type: "spring", stiffness: 400, damping: 15 }}
-                                className="w-10 h-10 rounded-2xl flex items-center justify-center text-gray-400 hover:text-purple-600 transition-colors"
+                                className="w-10 h-10 rounded-2xl flex items-center justify-center text-gray-400 hover:text-purple-600 hover:-translate-y-[3px] hover:scale-110 transition-all duration-200"
                                 style={{
                                     background: "rgba(255, 255, 255, 0.7)",
                                     border: "1px solid rgba(124, 58, 237, 0.06)",
@@ -90,7 +87,7 @@ export default function Footer() {
                                 }}
                             >
                                 <Icon className="w-4 h-4" aria-hidden="true" />
-                            </motion.a>
+                            </a>
                         ))}
                     </div>
                 </div>

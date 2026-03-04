@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useReveal } from "@/hooks/useReveal";
 import {
     Smartphone, Monitor, Search, Zap, Shield,
     BarChart3, PaintbrushIcon, Palette
@@ -40,16 +40,15 @@ const deliverables = [
 ];
 
 export default function WhatYouGet() {
+    const headerRef = useReveal();
+    const browserRef = useReveal();
+    const gridRef = useReveal();
+
     return (
         <section className="w-full py-24 relative overflow-hidden">
             <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-violet-100/40 blur-[150px] rounded-full pointer-events-none -z-10" />
             <div className="max-w-6xl mx-auto px-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
+                <div ref={headerRef} className="text-center mb-16 reveal">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-violet-50 border border-violet-100 text-violet-600 text-xs font-bold uppercase tracking-widest mb-4">
                         <PaintbrushIcon className="w-3.5 h-3.5" /> What You Get
                     </div>
@@ -59,15 +58,12 @@ export default function WhatYouGet() {
                     <p className="text-gray-500 text-lg max-w-2xl mx-auto">
                         No hidden extras. No surprise charges. Here&apos;s exactly what&apos;s included with every plan.
                     </p>
-                </motion.div>
+                </div>
 
                 {/* Visual mockup browser frame */}
-                <motion.div
-                    initial={{ opacity: 0, y: 40 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ type: "spring", stiffness: 60, damping: 18 }}
-                    className="relative bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-white/60 shadow-2xl overflow-hidden mb-16"
+                <div
+                    ref={browserRef}
+                    className="relative bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-white/60 shadow-2xl overflow-hidden mb-16 reveal-scale"
                 >
                     {/* Browser chrome */}
                     <div className="bg-gray-100/80 px-6 py-3.5 border-b border-gray-200/60 flex items-center gap-3">
@@ -113,46 +109,37 @@ export default function WhatYouGet() {
                                     { label: "SEO Score", value: "95/100", color: "from-emerald-400 to-green-500" },
                                     { label: "Mobile", value: "Perfect", color: "from-violet-400 to-purple-500" },
                                     { label: "Security", value: "A+", color: "from-amber-400 to-orange-500" },
-                                ].map((metric, i) => (
-                                    <motion.div
+                                ].map((metric) => (
+                                    <div
                                         key={metric.label}
-                                        initial={{ opacity: 0, scale: 0.9 }}
-                                        whileInView={{ opacity: 1, scale: 1 }}
-                                        viewport={{ once: true }}
-                                        transition={{ delay: 0.2 + i * 0.1 }}
                                         className="bg-white rounded-2xl border border-gray-100 p-4 text-center shadow-sm"
                                     >
                                         <div className={`text-2xl font-extrabold bg-gradient-to-r ${metric.color} bg-clip-text text-transparent mb-1`}>
                                             {metric.value}
                                         </div>
                                         <div className="text-xs text-gray-400 font-medium">{metric.label}</div>
-                                    </motion.div>
+                                    </div>
                                 ))}
                             </div>
                         </div>
                     </div>
-                </motion.div>
+                </div>
 
                 {/* Deliverables grid */}
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div ref={gridRef} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 reveal">
                     {deliverables.map((item, i) => {
                         const Icon = item.icon;
                         return (
-                            <motion.div
+                            <div
                                 key={item.title}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.08 }}
-                                whileHover={{ y: -4 }}
-                                className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/60 shadow-lg p-6 hover:shadow-xl transition-all"
+                                className={`bg-white/90 backdrop-blur-xl rounded-2xl border border-white/60 shadow-lg p-6 hover:shadow-xl hover:-translate-y-1 transition-all delay-${i + 1}`}
                             >
                                 <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center mb-4 shadow-lg shadow-teal-500/20">
                                     <Icon className="w-5 h-5 text-white" />
                                 </div>
                                 <h3 className="font-bold text-gray-900 mb-1.5">{item.title}</h3>
                                 <p className="text-sm text-gray-500 leading-relaxed">{item.desc}</p>
-                            </motion.div>
+                            </div>
                         );
                     })}
                 </div>

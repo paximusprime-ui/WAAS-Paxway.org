@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { useReveal } from "@/hooks/useReveal";
 import {
     Rocket, Code2, Shield, Zap, Search, Paintbrush,
     BarChart3, HeadphonesIcon, RefreshCcw, ArrowRight,
@@ -67,35 +67,20 @@ export default function ServicesContent() {
             <section className="w-full py-20 relative overflow-hidden">
                 <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-teal-100/50 blur-[150px] rounded-full pointer-events-none -z-10" />
                 <div className="max-w-5xl mx-auto px-6 text-center">
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ type: "spring", stiffness: 200, damping: 15 }}
-                        className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-teal-50 border border-teal-100 mb-6 text-teal-600 text-xs font-bold uppercase tracking-widest"
-                    >
+                    <div className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-teal-50 border border-teal-100 mb-6 text-teal-600 text-xs font-bold uppercase tracking-widest hero-fade-in">
                         <Rocket className="w-3.5 h-3.5" /> Our Services
-                    </motion.div>
-                    <motion.h1
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.1 }}
-                        className="text-4xl sm:text-6xl font-bold tracking-tight text-gray-900 mb-6"
-                    >
+                    </div>
+                    <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-gray-900 mb-6 hero-fade-in" style={{ animationDelay: "0.08s" }}>
                         Website as a{" "}
                         <span className="bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 bg-clip-text text-transparent">
                             Service
                         </span>
-                    </motion.h1>
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.2 }}
-                        className="text-gray-500 text-lg max-w-2xl mx-auto"
-                    >
+                    </h1>
+                    <p className="text-gray-500 text-lg max-w-2xl mx-auto hero-fade-in" style={{ animationDelay: "0.16s" }}>
                         We don&apos;t just build websites — we build growth engines. A one-time investment for
                         the build, plus a low monthly retainer for hosting, maintenance, SEO, and everything
                         your business needs to thrive online.
-                    </motion.p>
+                    </p>
                 </div>
             </section>
 
@@ -103,56 +88,7 @@ export default function ServicesContent() {
             <section className="w-full py-16">
                 <div className="max-w-6xl mx-auto px-6 space-y-16">
                     {tiers.map((tier, i) => (
-                        <motion.div
-                            key={tier.name}
-                            initial={{ opacity: 0, y: 50 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-80px" }}
-                            transition={{ type: "spring", stiffness: 80, damping: 18, delay: i * 0.1 }}
-                            className={`relative bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-white/60 shadow-xl ${tier.glow} p-8 sm:p-12`}
-                        >
-                            {tier.popular && (
-                                <div className="absolute -top-4 left-8">
-                                    <div className="bg-gradient-to-r from-emerald-500 to-green-500 text-white text-xs font-bold px-5 py-2 rounded-full uppercase tracking-widest shadow-lg shadow-emerald-500/30">
-                                        ⭐ Most Popular
-                                    </div>
-                                </div>
-                            )}
-
-                            <div className="grid md:grid-cols-2 gap-10">
-                                <div>
-                                    <h2 className="text-3xl font-bold text-gray-900 mb-2">{tier.name}</h2>
-                                    <p className="text-gray-500 mb-6">{tier.tagline}</p>
-                                    <div className="flex items-baseline gap-3 mb-2">
-                                        <span className="text-5xl font-extrabold text-gray-900">{tier.monthly.replace('/mo', '')}</span>
-                                        <span className="text-gray-400">/month</span>
-                                    </div>
-                                    <p className="text-lg font-semibold text-gray-600 mb-8">+ {tier.price} one-time setup</p>
-                                    <Link
-                                        href="/pricing"
-                                        className={`inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-bold text-sm bg-gradient-to-r ${tier.accent} shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all`}
-                                    >
-                                        Get Started <ArrowRight className="w-4 h-4" />
-                                    </Link>
-                                </div>
-                                <div>
-                                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">What&apos;s Included</h3>
-                                    <ul className="space-y-4">
-                                        {tier.features.map((f, j) => {
-                                            const Icon = f.icon;
-                                            return (
-                                                <li key={j} className="flex items-start gap-3">
-                                                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${tier.accent} flex items-center justify-center shrink-0`}>
-                                                        <Icon className="w-4 h-4 text-white" />
-                                                    </div>
-                                                    <span className="text-gray-600 text-sm pt-1">{f.text}</span>
-                                                </li>
-                                            );
-                                        })}
-                                    </ul>
-                                </div>
-                            </div>
-                        </motion.div>
+                        <TierCard key={tier.name} tier={tier} index={i} />
                     ))}
                 </div>
             </section>
@@ -167,25 +103,9 @@ export default function ServicesContent() {
                             { icon: Search, title: "SEO Built-In", desc: "Rank higher on Google from day one" },
                             { icon: Shield, title: "Fully Secure", desc: "SSL, backups, security monitoring" },
                             { icon: HeadphonesIcon, title: "Ongoing Support", desc: "We manage everything, you focus on business" },
-                        ].map((item, i) => {
-                            const Icon = item.icon;
-                            return (
-                                <motion.div
-                                    key={i}
-                                    initial={{ opacity: 0, y: 30 }}
-                                    whileInView={{ opacity: 1, y: 0 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: i * 0.1 }}
-                                    className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/60 shadow-lg p-6 text-center"
-                                >
-                                    <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center mx-auto mb-4">
-                                        <Icon className="w-6 h-6 text-white" />
-                                    </div>
-                                    <h3 className="font-bold text-gray-900 mb-1">{item.title}</h3>
-                                    <p className="text-sm text-gray-500">{item.desc}</p>
-                                </motion.div>
-                            );
-                        })}
+                        ].map((item, i) => (
+                            <PlanFeatureCard key={i} icon={item.icon} title={item.title} desc={item.desc} index={i} />
+                        ))}
                     </div>
                 </div>
             </section>
@@ -214,5 +134,73 @@ export default function ServicesContent() {
                 </div>
             </section>
         </main>
+    );
+}
+
+function TierCard({ tier, index }: { tier: typeof tiers[number]; index: number }) {
+    const ref = useReveal();
+    return (
+        <div
+            ref={ref}
+            className={`relative bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-white/60 shadow-xl ${tier.glow} p-8 sm:p-12 reveal delay-${index + 1}`}
+        >
+            {tier.popular && (
+                <div className="absolute -top-4 left-8">
+                    <div className="bg-gradient-to-r from-emerald-500 to-green-500 text-white text-xs font-bold px-5 py-2 rounded-full uppercase tracking-widest shadow-lg shadow-emerald-500/30">
+                        ⭐ Most Popular
+                    </div>
+                </div>
+            )}
+
+            <div className="grid md:grid-cols-2 gap-10">
+                <div>
+                    <h2 className="text-3xl font-bold text-gray-900 mb-2">{tier.name}</h2>
+                    <p className="text-gray-500 mb-6">{tier.tagline}</p>
+                    <div className="flex items-baseline gap-3 mb-2">
+                        <span className="text-5xl font-extrabold text-gray-900">{tier.monthly.replace('/mo', '')}</span>
+                        <span className="text-gray-400">/month</span>
+                    </div>
+                    <p className="text-lg font-semibold text-gray-600 mb-8">+ {tier.price} one-time setup</p>
+                    <Link
+                        href="/pricing"
+                        className={`inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-bold text-sm bg-gradient-to-r ${tier.accent} shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all`}
+                    >
+                        Get Started <ArrowRight className="w-4 h-4" />
+                    </Link>
+                </div>
+                <div>
+                    <h3 className="text-sm font-bold text-gray-400 uppercase tracking-widest mb-4">What&apos;s Included</h3>
+                    <ul className="space-y-4">
+                        {tier.features.map((f, j) => {
+                            const Icon = f.icon;
+                            return (
+                                <li key={j} className="flex items-start gap-3">
+                                    <div className={`w-8 h-8 rounded-lg bg-gradient-to-br ${tier.accent} flex items-center justify-center shrink-0`}>
+                                        <Icon className="w-4 h-4 text-white" />
+                                    </div>
+                                    <span className="text-gray-600 text-sm pt-1">{f.text}</span>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function PlanFeatureCard({ icon: Icon, title, desc, index }: { icon: typeof Zap; title: string; desc: string; index: number }) {
+    const ref = useReveal();
+    return (
+        <div
+            ref={ref}
+            className={`bg-white/90 backdrop-blur-xl rounded-2xl border border-white/60 shadow-lg p-6 text-center reveal delay-${index + 1}`}
+        >
+            <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center mx-auto mb-4">
+                <Icon className="w-6 h-6 text-white" />
+            </div>
+            <h3 className="font-bold text-gray-900 mb-1">{title}</h3>
+            <p className="text-sm text-gray-500">{desc}</p>
+        </div>
     );
 }

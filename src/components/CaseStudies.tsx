@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Shield, TrendingUp, ArrowRight, BarChart3 } from "lucide-react";
+import { useReveal } from "@/hooks/useReveal";
+import { TrendingUp, ArrowRight, BarChart3 } from "lucide-react";
 import Link from "next/link";
 
 const caseStudies = [
@@ -56,16 +56,14 @@ const caseStudies = [
 ];
 
 export default function CaseStudies() {
+    const headerRef = useReveal();
+    const ctaRef = useReveal();
+
     return (
         <section className="w-full py-24 relative overflow-hidden">
             <div className="absolute top-0 left-1/3 w-[500px] h-[500px] bg-emerald-100/40 blur-[150px] rounded-full pointer-events-none -z-10" />
             <div className="max-w-6xl mx-auto px-6">
-                <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mb-16"
-                >
+                <div ref={headerRef} className="text-center mb-16 reveal">
                     <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-emerald-50 border border-emerald-100 text-emerald-600 text-xs font-bold uppercase tracking-widest mb-4">
                         <BarChart3 className="w-3.5 h-3.5" /> Case Studies
                     </div>
@@ -75,68 +73,66 @@ export default function CaseStudies() {
                     <p className="text-gray-500 text-lg max-w-2xl mx-auto">
                         See the measurable impact our websites have on our clients&apos; bottom line.
                     </p>
-                </motion.div>
+                </div>
 
                 <div className="space-y-10">
                     {caseStudies.map((study, i) => (
-                        <motion.div
-                            key={study.client}
-                            initial={{ opacity: 0, y: 40 }}
-                            whileInView={{ opacity: 1, y: 0 }}
-                            viewport={{ once: true, margin: "-60px" }}
-                            transition={{ delay: i * 0.1, type: "spring", stiffness: 80, damping: 18 }}
-                            className={`relative bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-white/60 shadow-xl ${study.glow} overflow-hidden`}
-                        >
-                            <div className="grid md:grid-cols-5 gap-0">
-                                {/* Left — big stat */}
-                                <div className={`md:col-span-2 bg-gradient-to-br ${study.gradient} p-8 sm:p-10 flex flex-col justify-center text-white`}>
-                                    <div className="text-6xl sm:text-7xl font-black mb-2">{study.stat}</div>
-                                    <div className="text-lg font-semibold opacity-90 mb-4">{study.statLabel}</div>
-                                    <div className="flex items-center gap-2 text-sm opacity-80">
-                                        <TrendingUp className="w-4 h-4" />
-                                        {study.client} · {study.industry}
-                                    </div>
-                                    <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full w-fit">
-                                        {study.tier} Tier
-                                    </div>
-                                </div>
-
-                                {/* Right — description + metrics */}
-                                <div className="md:col-span-3 p-8 sm:p-10">
-                                    <p className="text-gray-600 text-base leading-relaxed mb-8">
-                                        {study.description}
-                                    </p>
-                                    <div className="grid grid-cols-3 gap-4">
-                                        {study.results.map((r) => (
-                                            <div key={r.label} className="text-center bg-gray-50/80 rounded-2xl p-4">
-                                                <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
-                                                    {r.label}
-                                                </div>
-                                                <div className="text-sm text-gray-400 line-through mb-1">{r.before}</div>
-                                                <div className="text-xl font-extrabold text-gray-900">{r.after}</div>
-                                            </div>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
-                        </motion.div>
+                        <CaseStudyCard key={study.client} study={study} index={i} />
                     ))}
                 </div>
 
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    className="text-center mt-12"
-                >
+                <div ref={ctaRef} className="text-center mt-12 reveal">
                     <Link
                         href="/contact"
                         className="inline-flex items-center gap-2 px-8 py-4 rounded-2xl text-white font-bold text-sm bg-gradient-to-r from-teal-400 to-cyan-500 shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all"
                     >
                         Start Your Success Story <ArrowRight className="w-4 h-4" />
                     </Link>
-                </motion.div>
+                </div>
             </div>
         </section>
+    );
+}
+
+function CaseStudyCard({ study, index }: { study: typeof caseStudies[0]; index: number }) {
+    const ref = useReveal();
+    return (
+        <div
+            ref={ref}
+            className={`relative bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-white/60 shadow-xl ${study.glow} overflow-hidden reveal-scale delay-${index + 1}`}
+        >
+            <div className="grid md:grid-cols-5 gap-0">
+                {/* Left — big stat */}
+                <div className={`md:col-span-2 bg-gradient-to-br ${study.gradient} p-8 sm:p-10 flex flex-col justify-center text-white`}>
+                    <div className="text-6xl sm:text-7xl font-black mb-2">{study.stat}</div>
+                    <div className="text-lg font-semibold opacity-90 mb-4">{study.statLabel}</div>
+                    <div className="flex items-center gap-2 text-sm opacity-80">
+                        <TrendingUp className="w-4 h-4" />
+                        {study.client} · {study.industry}
+                    </div>
+                    <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full w-fit">
+                        {study.tier} Tier
+                    </div>
+                </div>
+
+                {/* Right — description + metrics */}
+                <div className="md:col-span-3 p-8 sm:p-10">
+                    <p className="text-gray-600 text-base leading-relaxed mb-8">
+                        {study.description}
+                    </p>
+                    <div className="grid grid-cols-3 gap-4">
+                        {study.results.map((r) => (
+                            <div key={r.label} className="text-center bg-gray-50/80 rounded-2xl p-4">
+                                <div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2">
+                                    {r.label}
+                                </div>
+                                <div className="text-sm text-gray-400 line-through mb-1">{r.before}</div>
+                                <div className="text-xl font-extrabold text-gray-900">{r.after}</div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }

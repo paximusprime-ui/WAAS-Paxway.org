@@ -19,7 +19,7 @@ export default function GymDemo() {
 
             {/* Hero — Bold with neon accents */}
             <section className="relative pt-16 min-h-[95vh] flex items-center overflow-hidden">
-                <div className="absolute inset-0"><Image src="/demos/demo-fitness.png" alt="Peak Performance Gym" fill className="object-cover opacity-25" /><div className="absolute inset-0 bg-gradient-to-b from-black via-black/70 to-[#0A0A0A]" /></div>
+                <div className="absolute inset-0"><Image src="/demos/demo-fitness.jpg" alt="Peak Performance Gym" fill className="object-cover opacity-25" /><div className="absolute inset-0 bg-gradient-to-b from-black via-black/70 to-[#0A0A0A]" /></div>
                 <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/15 blur-[120px] rounded-full" />
                 <div className="absolute bottom-1/4 right-1/4 w-72 h-72 bg-blue-600/15 blur-[100px] rounded-full" />
                 <div className="relative max-w-6xl mx-auto px-6 py-20 text-center">

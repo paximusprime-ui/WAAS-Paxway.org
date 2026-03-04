@@ -19,7 +19,7 @@ export default function LandscapingDemo() {
 
             {/* Hero — Nature-inspired with bg image */}
             <section className="relative pt-16 min-h-[90vh] flex items-center overflow-hidden">
-                <div className="absolute inset-0"><Image src="/demos/demo-landscaping.png" alt="Evergreen Landscapes" fill className="object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-[#1B3A2D] via-[#1B3A2D]/80 to-transparent" /><div className="absolute inset-0 bg-gradient-to-t from-[#1B3A2D]/40 via-transparent to-transparent" /></div>
+                <div className="absolute inset-0"><Image src="/demos/demo-landscaping.jpg" alt="Evergreen Landscapes" fill className="object-cover" /><div className="absolute inset-0 bg-gradient-to-r from-[#1B3A2D] via-[#1B3A2D]/80 to-transparent" /><div className="absolute inset-0 bg-gradient-to-t from-[#1B3A2D]/40 via-transparent to-transparent" /></div>
                 <div className="relative max-w-6xl mx-auto px-6 py-20">
                     <span className="text-lime-400 text-xs font-bold uppercase tracking-[0.3em] block mb-6">Licensed & Insured · 18 Years Experience</span>
                     <h1 className="text-4xl sm:text-6xl lg:text-7xl font-bold text-white leading-[1.08] mb-6 tracking-tight" style={{ fontFamily: "'Georgia', serif" }}>
