@@ -1,0 +1,9 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+Disallow: /api/
+Disallow: /success
+Disallow: /demo/
+
+Sitemap: https://paxway.org/sitemap.xml

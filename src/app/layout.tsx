@@ -64,7 +64,7 @@ export const metadata: Metadata = {
       "Paxway builds high-performance, SEO-optimized web applications for B2B companies. Scale smarter with custom Next.js builds, AI integrations, and enterprise-grade architecture.",
     images: [
       {
-        url: "/og-image.png",
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Paxway — Scale Smarter. Not Harder.",
@@ -78,7 +78,7 @@ export const metadata: Metadata = {
     title: "Paxway | Premium Web Apps & Digital Strategy",
     description:
       "We build high-performance web applications for B2B companies. Custom Next.js, AI integrations, and enterprise architecture.",
-    images: ["/og-image.png"],
+    images: ["/og-image.jpg"],
   },
   icons: {
     icon: "/favicon.ico",
