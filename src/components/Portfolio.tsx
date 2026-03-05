@@ -151,6 +151,7 @@ function PortfolioCard({ demo, i, isEven }: { demo: typeof demos[number]; i: num
                                 src={demo.image}
                                 alt={`${demo.title} — ${demo.industry} demo website showcasing ${demo.features.join(', ')}`}
                                 fill
+                                loading="lazy"
                                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                                 sizes="(max-width: 768px) 100vw, 55vw"
                             />
