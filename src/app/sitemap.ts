@@ -19,15 +19,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         { url: `${baseUrl}/terms`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
     ];
 
-    /* ── Demo pages ── */
-    const demoSlugs = ["bakery", "auto-shop", "real-estate", "gym", "landscaping", "salon"];
-    const demoPages: MetadataRoute.Sitemap = demoSlugs.map((slug) => ({
-        url: `${baseUrl}/demo/${slug}`,
-        lastModified: now,
-        changeFrequency: "monthly" as const,
-        priority: 0.6,
-    }));
-
     /* ── Blog articles ── */
     const blogPages: MetadataRoute.Sitemap = blogPosts.map((post) => ({
         url: `${baseUrl}/blog/${post.slug}`,
@@ -36,5 +27,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.5,
     }));
 
-    return [...corePages, ...demoPages, ...blogPages];
+    return [...corePages, ...blogPages];
 }

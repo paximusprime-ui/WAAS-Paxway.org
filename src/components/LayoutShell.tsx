@@ -8,7 +8,7 @@ import StickyCtaBar from "@/components/StickyCtaBar";
 import ExitIntent from "@/components/ExitIntent";
 
 /** Pages where the global Header/Footer should be hidden */
-const BARE_ROUTES = ["/success", "/demo"];
+const BARE_ROUTES = ["/success"];
 
 export default function LayoutShell({
     children,
