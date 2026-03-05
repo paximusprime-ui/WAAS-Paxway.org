@@ -57,6 +57,9 @@ export default function ExitIntent() {
 
             {/* Modal */}
             <div
+                role="dialog"
+                aria-modal="true"
+                aria-labelledby="exit-intent-title"
                 className="relative w-full max-w-md bg-white rounded-3xl p-8 shadow-2xl border border-gray-100 z-10"
                 style={{
                     transform: animating ? "scale(1) translateY(0)" : "scale(0.85) translateY(30px)",
@@ -83,7 +86,7 @@ export default function ExitIntent() {
                         <Sparkles className="w-7 h-7 text-teal-500" />
                     </div>
 
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                    <h3 id="exit-intent-title" className="text-2xl font-bold text-gray-900 mb-2">
                         Wait — before you go!
                     </h3>
                     <p className="text-gray-500 mb-8 text-sm leading-relaxed">

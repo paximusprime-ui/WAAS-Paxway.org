@@ -1,0 +1,17 @@
+{
+    "name": "Paxway",
+    "short_name": "Paxway",
+    "description": "Accelerating B2B platforms with premium architecture, design, and edge computing.",
+    "start_url": "/",
+    "display": "standalone",
+    "background_color": "#f5f3ff",
+    "theme_color": "#7c3aed",
+    "icons": [
+        {
+            "src": "/paxway-logo.png",
+            "sizes": "512x512",
+            "type": "image/png",
+            "purpose": "any"
+        }
+    ]
+}

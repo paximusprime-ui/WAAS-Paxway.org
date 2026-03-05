@@ -109,7 +109,7 @@ export default function AutoShopDemo() {
             {/* Footer */}
             <footer className="border-t border-gray-800 py-6 text-center">
                 <p className="text-xs text-gray-600 mb-2">© 2026 Apex Auto Repair. All rights reserved.</p>
-                <Link href="https://paxway.org" target="_blank" className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-teal-400 transition-colors">
+                <Link href="https://paxway.org" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs text-gray-500 hover:text-teal-400 transition-colors">
                     <span className="w-4 h-4 rounded bg-gradient-to-br from-teal-400 to-cyan-500 inline-block" />
                     Built by <span className="font-bold">Paxway</span>
                 </Link>

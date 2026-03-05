@@ -99,7 +99,7 @@ export default function BakeryDemo() {
             {/* Footer */}
             <footer className="border-t border-[#E8D5C0] py-6 text-center bg-white">
                 <p className="text-xs text-[#A0826D] mb-2">© 2026 Golden Crust Bakery. All rights reserved.</p>
-                <Link href="https://paxway.org" target="_blank" className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-teal-500 transition-colors">
+                <Link href="https://paxway.org" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-xs text-gray-400 hover:text-teal-500 transition-colors">
                     <span className="w-4 h-4 rounded bg-gradient-to-br from-teal-400 to-cyan-500 inline-block" />
                     Built by <span className="font-bold">Paxway</span>
                 </Link>

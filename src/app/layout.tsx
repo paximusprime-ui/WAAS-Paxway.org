@@ -38,6 +38,11 @@ export const metadata: Metadata = {
     "Paxway",
   ],
   authors: [{ name: "Paxway", url: siteUrl }],
+  manifest: "/manifest.json",
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/paxway-logo.png",
+  },
   creator: "Paxway",
   publisher: "Paxway",
   robots: {
@@ -79,9 +84,6 @@ export const metadata: Metadata = {
     description:
       "We build high-performance web applications for B2B companies. Custom Next.js, AI integrations, and enterprise architecture.",
     images: ["/og-image.jpg"],
-  },
-  icons: {
-    icon: "/favicon.ico",
   },
 };
 
