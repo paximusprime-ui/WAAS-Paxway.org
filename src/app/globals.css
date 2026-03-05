@@ -245,22 +245,7 @@
         transparent);
   }
 
-  /* ═══════ FLOATING ANIMATIONS ═══════ */
-  .float-slow {
-    animation: floatSlow 6s ease-in-out infinite;
-  }
-
-  .float-medium {
-    animation: floatMedium 4s ease-in-out infinite;
-  }
-
-  .float-fast {
-    animation: floatFast 3s ease-in-out infinite;
-  }
-
-  .float-wobble {
-    animation: floatWobble 5s ease-in-out infinite;
-  }
+  /* Float animations removed — not used by any component */
 
   /* Widget card for chat widgets */
   .widget-card-elevated {
@@ -295,73 +280,7 @@
   animation: heroFadeIn 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* ═══════ KEYFRAMES ═══════ */
-
-@keyframes floatSlow {
-
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-14px) rotate(0.5deg);
-  }
-}
-
-@keyframes floatMedium {
-
-  0%,
-  100% {
-    transform: translateY(0px) rotate(0deg);
-  }
-
-  50% {
-    transform: translateY(-10px) rotate(-0.5deg);
-  }
-}
-
-@keyframes floatFast {
-
-  0%,
-  100% {
-    transform: translateY(0px);
-  }
-
-  50% {
-    transform: translateY(-6px);
-  }
-}
-
-@keyframes floatWobble {
-
-  0%,
-  100% {
-    transform: translateY(0) rotate(-1deg);
-  }
-
-  25% {
-    transform: translateY(-8px) rotate(1deg);
-  }
-
-  50% {
-    transform: translateY(-4px) rotate(0deg);
-  }
-
-  75% {
-    transform: translateY(-12px) rotate(-0.5deg);
-  }
-}
-
-@keyframes shimmer {
-  0% {
-    transform: translateX(-100%);
-  }
-
-  100% {
-    transform: translateX(100%);
-  }
-}
+/* Dead keyframes removed: floatSlow, floatMedium, floatFast, floatWobble, shimmer, pulse-soft, blob-morph */
 
 @keyframes barGrow {
   from {
@@ -372,20 +291,6 @@
     width: var(--bar-width);
   }
 }
-
-@keyframes pulse-soft {
-
-  0%,
-  100% {
-    opacity: 0.6;
-  }
-
-  50% {
-    opacity: 1;
-  }
-}
-
-/* blob-morph removed — was animating border-radius on blurred elements, causing GPU thrashing */
 
 /* ═══════ CSS-ONLY REVEAL ANIMATIONS (replaces Framer Motion whileInView) ═══════ */
 @keyframes revealUp {

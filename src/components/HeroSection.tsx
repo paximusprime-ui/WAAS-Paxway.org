@@ -46,7 +46,7 @@ export default function HeroSection() {
     const videoRef = useRef<HTMLVideoElement>(null);
     const comparisonRef = useReveal();
 
-    // Lazy-load video via IntersectionObserver — only starts loading when hero enters viewport
+    // Lazy-load video via IntersectionObserver — pause when off-screen
     useEffect(() => {
         const video = videoRef.current;
         if (!video) return;
@@ -54,15 +54,16 @@ export default function HeroSection() {
         const observer = new IntersectionObserver(
             ([entry]) => {
                 if (entry.isIntersecting) {
-                    video.src = "/hero-showcase.mp4";
-                    video.load();
-                    video.play().catch(() => {
-                        // autoplay may be blocked — that's fine
-                    });
-                    observer.disconnect();
+                    if (!video.src) {
+                        video.src = "/hero-showcase.mp4";
+                        video.load();
+                    }
+                    video.play().catch(() => { });
+                } else if (video.src) {
+                    video.pause();
                 }
             },
-            { threshold: 0.1 }
+            { threshold: 0.05 }
         );
 
         observer.observe(video);
@@ -89,7 +90,6 @@ export default function HeroSection() {
                         poster="/hero-poster.jpg"
                         aria-hidden="true"
                         className="w-full h-full object-cover"
-                        style={{ filter: "brightness(1.05) saturate(1.15)" }}
                     />
 
                     {/* Soft radial overlay so text pops */}
@@ -114,7 +114,7 @@ export default function HeroSection() {
                 <div className="relative z-10 max-w-7xl mx-auto px-6 pt-36 sm:pt-44 pb-32">
                     <div className="text-center max-w-3xl mx-auto mb-24">
                         <div
-                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-purple-200/60 bg-white/70 backdrop-blur-md mb-8 shadow-sm hero-fade-in"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-purple-200/60 bg-white/90 mb-8 shadow-sm hero-fade-in"
                             style={{ animationDelay: "0s" }}
                         >
                             <Sparkles className="w-4 h-4 text-purple-500" aria-hidden="true" />
@@ -160,7 +160,7 @@ export default function HeroSection() {
                             <div className="hover-lift">
                                 <Link
                                     href="#portfolio"
-                                    className="px-8 py-4 rounded-full font-medium text-gray-700 hover:text-gray-900 transition-colors border-2 border-white/60 bg-white/50 backdrop-blur-sm hover:border-purple-300 hover:bg-purple-50/50"
+                                    className="px-8 py-4 rounded-full font-medium text-gray-700 hover:text-gray-900 transition-colors border-2 border-gray-200/60 bg-white/80 hover:border-purple-300 hover:bg-purple-50/50"
                                 >
                                     View Our Work
                                 </Link>

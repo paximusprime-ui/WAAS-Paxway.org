@@ -45,7 +45,7 @@ export default function StickyCtaBar() {
             }}
         >
             <div className="max-w-lg mx-auto pointer-events-auto">
-                <div className="relative flex items-center justify-between gap-3 px-5 py-3.5 rounded-2xl bg-white/90 backdrop-blur-xl border border-gray-200/60 shadow-2xl shadow-black/10">
+                <div className="relative flex items-center justify-between gap-3 px-5 py-3.5 rounded-2xl bg-white border border-gray-200/60 shadow-2xl shadow-black/10">
                     <p className="text-sm font-medium text-gray-700 hidden sm:block">
                         Ready to scale your business?
                     </p>
