@@ -159,7 +159,7 @@ export default function HeroSection() {
                             </div>
                             <div className="hover-lift">
                                 <Link
-                                    href="#portfolio"
+                                    href="/portfolio"
                                     className="px-8 py-4 rounded-full font-medium text-gray-700 hover:text-gray-900 transition-colors border-2 border-gray-200/60 bg-white/80 hover:border-purple-300 hover:bg-purple-50/50"
                                 >
                                     View Our Work
