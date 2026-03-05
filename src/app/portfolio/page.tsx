@@ -13,6 +13,13 @@ export const metadata: Metadata = {
         description:
             "See real results from real businesses. Browse our portfolio of custom websites, case studies, and client testimonials.",
         url: "https://paxway.org/portfolio",
+        images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Paxway Portfolio" }],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Our Work — Portfolio & Case Studies",
+        description: "See real results from real businesses. Browse our portfolio of custom websites, case studies, and client testimonials.",
+        images: ["/og-image.jpg"],
     },
 };
 

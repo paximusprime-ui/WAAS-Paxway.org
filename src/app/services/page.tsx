@@ -12,6 +12,13 @@ export const metadata: Metadata = {
         description:
             "Explore Paxway's three service tiers: Launch, Grow, and Dominate. One-time build plus affordable monthly management.",
         url: "https://paxway.org/services",
+        images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Paxway Services" }],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Our Services — Website as a Service Plans",
+        description: "Explore Paxway's three service tiers: Launch, Grow, and Dominate.",
+        images: ["/og-image.jpg"],
     },
 };
 

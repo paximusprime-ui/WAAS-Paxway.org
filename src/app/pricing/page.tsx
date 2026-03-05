@@ -15,6 +15,13 @@ export const metadata: Metadata = {
         description:
             "One-time payment for the heavy lifting. Low monthly retainer for hosting, maintenance, and scale. No hidden fees.",
         url: "https://paxway.org/pricing",
+        images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Paxway Pricing" }],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Pricing — Transparent Plans for Every Business",
+        description: "One-time payment for the heavy lifting. Low monthly retainer for hosting, maintenance, and scale. No hidden fees.",
+        images: ["/og-image.jpg"],
     },
 };
 

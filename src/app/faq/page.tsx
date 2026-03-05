@@ -11,6 +11,13 @@ export const metadata: Metadata = {
         description:
             "Get answers to common questions about Paxway's website-as-a-service.",
         url: "https://paxway.org/faq",
+        images: [{ url: "/og-image.jpg", width: 1200, height: 630, alt: "Paxway FAQ" }],
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "FAQ — Frequently Asked Questions",
+        description: "Get answers to common questions about Paxway's website-as-a-service.",
+        images: ["/og-image.jpg"],
     },
 };
 
