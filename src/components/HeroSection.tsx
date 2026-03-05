@@ -115,7 +115,7 @@ export default function HeroSection() {
                     <div className="text-center max-w-3xl mx-auto mb-24">
                         <div
                             className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-purple-200/60 bg-white/90 mb-8 shadow-sm hero-fade-in"
-                            style={{ animationDelay: "0s" }}
+                            style={{ animationDelay: "0.1s" }}
                         >
                             <Sparkles className="w-4 h-4 text-purple-500" aria-hidden="true" />
                             <span className="text-sm font-semibold text-purple-600">
@@ -125,7 +125,7 @@ export default function HeroSection() {
 
                         <h1
                             className="text-5xl sm:text-7xl font-bold tracking-tight text-gray-900 drop-shadow-sm hero-fade-in"
-                            style={{ animationDelay: "0.08s" }}
+                            style={{ animationDelay: "0.25s" }}
                         >
                             Scale Smarter. <br />
                             <span className="gradient-text">Not Harder.</span>
@@ -133,7 +133,7 @@ export default function HeroSection() {
 
                         <p
                             className="mt-6 text-xl text-gray-600 max-w-2xl mx-auto font-light leading-relaxed drop-shadow-sm hero-fade-in"
-                            style={{ animationDelay: "0.16s" }}
+                            style={{ animationDelay: "0.4s" }}
                         >
                             We partner with B2B companies to unlock operational efficiency,
                             accelerate growth, and build premium software systems that scale.
@@ -141,7 +141,7 @@ export default function HeroSection() {
 
                         <div
                             className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 hero-fade-in"
-                            style={{ animationDelay: "0.24s" }}
+                            style={{ animationDelay: "0.55s" }}
                         >
                             <div className="hover-lift">
                                 <Link
