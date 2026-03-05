@@ -189,7 +189,7 @@ export default function HeroSection() {
                     {/* Comparison card */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-0 max-w-4xl mx-auto rounded-[2rem] overflow-hidden shadow-2xl shadow-cyan-200/30 border border-white/60">
                         {/* ── LEFT: Basic / Template Site ── */}
-                        <div className="bg-white/80 backdrop-blur-xl p-8 sm:p-10">
+                        <div className="bg-white p-8 sm:p-10">
                             <h3 className="text-xl sm:text-2xl font-bold text-gray-800 mb-8 pb-4 border-b border-gray-100">
                                 Basic / Template Site
                             </h3>
@@ -212,7 +212,7 @@ export default function HeroSection() {
                         </div>
 
                         {/* ── RIGHT: Custom Site ── */}
-                        <div className="relative bg-white/80 backdrop-blur-xl flex flex-col overflow-hidden">
+                        <div className="relative bg-white flex flex-col overflow-hidden">
                             {/* Teal gradient header bar */}
                             <div className="bg-gradient-to-r from-teal-500 via-cyan-500 to-blue-500 px-8 sm:px-10 py-5">
                                 <h3 className="text-xl sm:text-2xl font-bold text-white">

@@ -197,7 +197,7 @@ export default function Pricing() {
                                     setExpandedTier(expandedTier === tier.id ? null : tier.id);
                                 }}
                                 className={`relative rounded-3xl p-8 cursor-pointer transition-all duration-500 hover-lift
-                                    bg-white/90 backdrop-blur-xl border-2 delay-${i + 1}
+                                    bg-white border-2 delay-${i + 1}
                                     ${isSelected
                                         ? `${tier.borderColor} shadow-2xl ${tier.glowColor} ring-2 ${tier.ringColor}`
                                         : "border-white/60 shadow-xl shadow-gray-200/30 hover:shadow-xl"
@@ -327,7 +327,7 @@ export default function Pricing() {
                 {/* Optional add-on */}
                 <div
                     ref={addonRef}
-                    className="mt-16 max-w-3xl mx-auto bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-white/60 shadow-xl shadow-gray-200/30 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 cursor-pointer hover-lift reveal"
+                    className="mt-16 max-w-3xl mx-auto bg-white rounded-3xl border-2 border-gray-100 shadow-xl shadow-gray-200/30 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 cursor-pointer hover-lift reveal"
                 >
                     <div>
                         <div className="inline-flex items-center gap-2 text-cyan-600 font-bold mb-2 uppercase tracking-wider text-xs">

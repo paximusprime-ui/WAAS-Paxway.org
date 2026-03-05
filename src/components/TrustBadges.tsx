@@ -23,7 +23,7 @@ export default function TrustBadges() {
                     {badges.map((badge, i) => (
                         <div
                             key={badge.label}
-                            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/80 backdrop-blur-sm border border-gray-200/60 shadow-sm text-sm font-medium text-gray-600 hover:border-teal-200 hover:shadow-md hover:-translate-y-0.5 transition-all cursor-default delay-${i + 1}`}
+                            className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white border border-gray-200/60 shadow-sm text-sm font-medium text-gray-600 hover:border-teal-200 hover:shadow-md hover:-translate-y-0.5 transition-all cursor-default delay-${i + 1}`}
                         >
                             <span className="text-base">{badge.icon}</span>
                             {badge.label}

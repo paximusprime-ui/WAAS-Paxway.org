@@ -99,7 +99,7 @@ function CaseStudyCard({ study, index }: { study: typeof caseStudies[0]; index: 
     return (
         <div
             ref={ref}
-            className={`relative bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-white/60 shadow-xl ${study.glow} overflow-hidden reveal-scale delay-${index + 1}`}
+            className={`relative bg-white rounded-3xl border-2 border-gray-100 shadow-xl ${study.glow} overflow-hidden reveal-scale delay-${index + 1}`}
         >
             <div className="grid md:grid-cols-5 gap-0">
                 {/* Left — big stat */}
@@ -110,7 +110,7 @@ function CaseStudyCard({ study, index }: { study: typeof caseStudies[0]; index: 
                         <TrendingUp className="w-4 h-4" />
                         {study.client} · {study.industry}
                     </div>
-                    <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold bg-white/20 backdrop-blur-sm px-3 py-1.5 rounded-full w-fit">
+                    <div className="mt-4 inline-flex items-center gap-1 text-xs font-bold bg-white/20 px-3 py-1.5 rounded-full w-fit">
                         {study.tier} Tier
                     </div>
                 </div>

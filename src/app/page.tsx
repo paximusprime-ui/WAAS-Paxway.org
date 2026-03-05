@@ -52,19 +52,17 @@ export default function Home() {
   return (
     <main className="flex min-h-screen flex-col items-center overflow-x-hidden">
 
-      {/* Soft ambient background blobs */}
+      {/* Soft ambient gradients (static, zero GPU compositing cost) */}
       <div
-        className="absolute top-[-20%] left-[-10%] w-[700px] h-[700px] rounded-full bg-violet-100/50 blur-[120px] -z-10 pointer-events-none"
-        style={{ animation: "blob-morph 12s ease-in-out infinite" }}
+        className="absolute inset-0 -z-10 pointer-events-none overflow-hidden"
         aria-hidden="true"
-      />
-      <div
-        className="absolute top-[10%] right-[-15%] w-[600px] h-[600px] rounded-full bg-purple-100/40 blur-[100px] -z-10 pointer-events-none"
-        aria-hidden="true"
-      />
-      <div
-        className="absolute bottom-[5%] left-[10%] w-[500px] h-[500px] rounded-full bg-teal-100/30 blur-[110px] -z-10 pointer-events-none"
-        aria-hidden="true"
+        style={{
+          background: `
+            radial-gradient(ellipse 600px 600px at 10% 0%, rgba(221,214,254,0.35), transparent 70%),
+            radial-gradient(ellipse 500px 500px at 90% 15%, rgba(233,213,255,0.25), transparent 70%),
+            radial-gradient(ellipse 450px 450px at 20% 80%, rgba(204,251,241,0.2), transparent 70%)
+          `,
+        }}
       />
 
       {/* Hero + Comparison — eagerly loaded (above the fold) */}

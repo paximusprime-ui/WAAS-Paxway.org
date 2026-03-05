@@ -63,7 +63,7 @@ export default function WhatYouGet() {
                 {/* Visual mockup browser frame */}
                 <div
                     ref={browserRef}
-                    className="relative bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-white/60 shadow-2xl overflow-hidden mb-16 reveal-scale"
+                    className="relative bg-white rounded-3xl border-2 border-gray-100 shadow-2xl overflow-hidden mb-16 reveal-scale"
                 >
                     {/* Browser chrome */}
                     <div className="bg-gray-100/80 px-6 py-3.5 border-b border-gray-200/60 flex items-center gap-3">
@@ -132,7 +132,7 @@ export default function WhatYouGet() {
                         return (
                             <div
                                 key={item.title}
-                                className={`bg-white/90 backdrop-blur-xl rounded-2xl border border-white/60 shadow-lg p-6 hover:shadow-xl hover:-translate-y-1 transition-all delay-${i + 1}`}
+                                className={`bg-white rounded-2xl border border-gray-100 shadow-lg p-6 hover:shadow-xl hover:-translate-y-1 transition-all delay-${i + 1}`}
                             >
                                 <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center mb-4 shadow-lg shadow-teal-500/20">
                                     <Icon className="w-5 h-5 text-white" />

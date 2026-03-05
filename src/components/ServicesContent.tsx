@@ -142,7 +142,7 @@ function TierCard({ tier, index }: { tier: typeof tiers[number]; index: number }
     return (
         <div
             ref={ref}
-            className={`relative bg-white/90 backdrop-blur-xl rounded-3xl border-2 border-white/60 shadow-xl ${tier.glow} p-8 sm:p-12 reveal delay-${index + 1}`}
+            className={`relative bg-white rounded-3xl border-2 border-gray-100 shadow-xl ${tier.glow} p-8 sm:p-12 reveal delay-${index + 1}`}
         >
             {tier.popular && (
                 <div className="absolute -top-4 left-8">
@@ -194,7 +194,7 @@ function PlanFeatureCard({ icon: Icon, title, desc, index }: { icon: typeof Zap;
     return (
         <div
             ref={ref}
-            className={`bg-white/90 backdrop-blur-xl rounded-2xl border border-white/60 shadow-lg p-6 text-center reveal delay-${index + 1}`}
+            className={`bg-white rounded-2xl border border-gray-100 shadow-lg p-6 text-center reveal delay-${index + 1}`}
         >
             <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center mx-auto mb-4">
                 <Icon className="w-6 h-6 text-white" />

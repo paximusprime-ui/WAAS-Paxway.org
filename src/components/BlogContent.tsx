@@ -69,7 +69,7 @@ function BlogCard({ post, index }: { post: typeof blogPosts[number]; index: numb
     return (
         <article
             ref={ref}
-            className={`group bg-white/90 backdrop-blur-xl rounded-2xl border border-white/60 shadow-lg overflow-hidden hover-lift reveal delay-${Math.min(index + 1, 6)}`}
+            className={`group bg-white rounded-2xl border border-gray-100 shadow-lg overflow-hidden hover-lift reveal delay-${Math.min(index + 1, 6)}`}
         >
             <Link href={`/blog/${post.slug}`} className="block">
                 {/* Color bar */}

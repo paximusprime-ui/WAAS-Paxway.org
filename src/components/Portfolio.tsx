@@ -159,7 +159,7 @@ function PortfolioCard({ demo, i, isEven }: { demo: typeof demos[number]; i: num
                                 className={`absolute inset-0 bg-gradient-to-t ${demo.color} pointer-events-none transition-opacity duration-300 ${hovered ? 'opacity-15' : 'opacity-0'}`}
                             />
                             {/* Browser chrome overlay */}
-                            <div className="absolute top-0 left-0 right-0 bg-white/90 backdrop-blur-sm px-4 py-2.5 flex items-center gap-2 border-b border-gray-100/60">
+                            <div className="absolute top-0 left-0 right-0 bg-white px-4 py-2.5 flex items-center gap-2 border-b border-gray-100/60">
                                 <div className="flex gap-1.5">
                                     <div className="w-2.5 h-2.5 rounded-full bg-red-400" />
                                     <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />

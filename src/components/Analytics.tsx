@@ -137,7 +137,7 @@ export default function Analytics() {
                         return (
                             <div
                                 key={metric.label}
-                                className={`relative bg-white/90 backdrop-blur-xl rounded-3xl p-7 border border-white/80 shadow-xl shadow-gray-200/40 cursor-pointer group hover-lift delay-${i + 1}`}
+                                className={`relative bg-white rounded-3xl p-7 border border-gray-100 shadow-xl shadow-gray-200/40 cursor-pointer group hover-lift delay-${i + 1}`}
                             >
                                 {/* Icon + Badge row */}
                                 <div className="flex justify-between items-start mb-5">

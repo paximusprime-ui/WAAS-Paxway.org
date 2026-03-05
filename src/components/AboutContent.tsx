@@ -126,7 +126,7 @@ export default function AboutContent() {
                         <p className="text-gray-500 text-lg">What most business owners actually experience.</p>
                     </div>
 
-                    <div ref={comparisonTableRef} className="bg-white/90 backdrop-blur-xl rounded-3xl border border-white/60 shadow-xl overflow-hidden reveal delay-1">
+                    <div ref={comparisonTableRef} className="bg-white rounded-3xl border border-gray-100 shadow-xl overflow-hidden reveal delay-1">
                         {/* Table Header */}
                         <div className="grid grid-cols-4 text-sm font-bold border-b border-gray-100">
                             <div className="p-5 text-gray-400 uppercase tracking-wider text-xs">Feature</div>
@@ -227,7 +227,7 @@ function ValueCard({ icon: Icon, title, description, index }: { icon: typeof Tar
     return (
         <div
             ref={ref}
-            className={`bg-white/90 backdrop-blur-xl rounded-2xl border border-white/60 shadow-lg p-6 text-center cursor-pointer group hover-lift reveal delay-${index + 1}`}
+            className={`bg-white rounded-2xl border border-gray-100 shadow-lg p-6 text-center cursor-pointer group hover-lift reveal delay-${index + 1}`}
         >
             <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
                 <Icon className="w-7 h-7 text-white" />

@@ -52,7 +52,7 @@ export default function ContactContent() {
                         {/* Form */}
                         <div
                             ref={formRef}
-                            className="lg:col-span-3 bg-white/90 backdrop-blur-xl rounded-3xl border border-white/60 shadow-xl p-8 sm:p-10 reveal"
+                            className="lg:col-span-3 bg-white rounded-3xl border border-gray-100 shadow-xl p-8 sm:p-10 reveal"
                         >
                             {submitted ? (
                                 <div className="text-center py-12">
@@ -171,7 +171,7 @@ export default function ContactContent() {
                                 return (
                                     <div
                                         key={i}
-                                        className="bg-white/90 backdrop-blur-xl rounded-2xl border border-white/60 shadow-lg p-6 flex items-start gap-4"
+                                        className="bg-white rounded-2xl border border-gray-100 shadow-lg p-6 flex items-start gap-4"
                                     >
                                         <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-teal-400 to-cyan-500 flex items-center justify-center shrink-0">
                                             <Icon className="w-6 h-6 text-white" />

@@ -385,17 +385,7 @@
   }
 }
 
-@keyframes blob-morph {
-
-  0%,
-  100% {
-    border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
-  }
-
-  50% {
-    border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%;
-  }
-}
+/* blob-morph removed — was animating border-radius on blurred elements, causing GPU thrashing */
 
 /* ═══════ CSS-ONLY REVEAL ANIMATIONS (replaces Framer Motion whileInView) ═══════ */
 @keyframes revealUp {
@@ -426,7 +416,6 @@
 .reveal,
 .reveal-scale {
   opacity: 0;
-  will-change: transform, opacity;
 }
 
 /* Triggered state */
