@@ -14,7 +14,23 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
 
   async headers() {
-    return [{ source: "/(.*)", headers: securityHeaders }];
+    return [
+      { source: "/(.*)", headers: securityHeaders },
+      {
+        // Cache static assets aggressively (fonts, images)
+        source: "/(.+\\.(?:ico|png|jpg|jpeg|gif|webp|avif|svg|woff|woff2|ttf|eot))",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+      {
+        // Cache Next.js static chunks
+        source: "/_next/static/(.*)",
+        headers: [
+          { key: "Cache-Control", value: "public, max-age=31536000, immutable" },
+        ],
+      },
+    ];
   },
 
   // Enable React strict mode for better error detection

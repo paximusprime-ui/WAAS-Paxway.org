@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Portfolio from "@/components/Portfolio";
 import Testimonials from "@/components/Testimonials";
 import CaseStudies from "@/components/CaseStudies";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "Our Work — Portfolio & Case Studies",
@@ -23,9 +24,19 @@ export const metadata: Metadata = {
     },
 };
 
+const portfolioBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://paxway.org" },
+        { "@type": "ListItem", position: 2, name: "Portfolio", item: "https://paxway.org/portfolio" },
+    ],
+};
+
 export default function PortfolioPage() {
     return (
         <main className="flex min-h-screen flex-col items-center overflow-x-hidden pt-24">
+            <JsonLd data={portfolioBreadcrumb} />
             <Portfolio />
             <div className="section-divider w-full max-w-4xl mx-auto" />
             <CaseStudies />

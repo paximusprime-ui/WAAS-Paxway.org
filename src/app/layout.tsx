@@ -3,6 +3,8 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import LayoutShell from "@/components/LayoutShell";
 import JsonLd from "@/components/JsonLd";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 
 const geistSans = Geist({
@@ -89,18 +91,48 @@ export const metadata: Metadata = {
 
 const organizationSchema = {
   "@context": "https://schema.org",
-  "@type": "Organization",
+  "@type": "ProfessionalService",
   name: "Paxway",
   url: siteUrl,
   logo: `${siteUrl}/paxway-logo.png`,
+  image: `${siteUrl}/og-image.jpg`,
   description:
-    "Premium web application development and digital strategy for B2B companies.",
+    "Premium web application development and digital strategy for B2B companies. Custom Next.js builds, AI integrations, and enterprise-grade architecture.",
+  email: "ceo@paxway.org",
+  telephone: "+1-307-000-0000",
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Sheridan",
+    addressRegion: "WY",
+    addressCountry: "US",
+  },
+  areaServed: {
+    "@type": "Country",
+    name: "United States",
+  },
+  priceRange: "$$",
+  openingHoursSpecification: {
+    "@type": "OpeningHoursSpecification",
+    dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+    opens: "09:00",
+    closes: "18:00",
+  },
   contactPoint: {
     "@type": "ContactPoint",
     contactType: "customer support",
     email: "ceo@paxway.org",
+    availableLanguage: "English",
   },
   sameAs: [],
+  knowsAbout: [
+    "Web Development",
+    "Next.js",
+    "React",
+    "SEO Optimization",
+    "AI Integration",
+    "Digital Strategy",
+    "B2B SaaS",
+  ],
 };
 
 const websiteSchema = {
@@ -108,6 +140,14 @@ const websiteSchema = {
   "@type": "WebSite",
   name: "Paxway",
   url: siteUrl,
+  publisher: {
+    "@type": "Organization",
+    name: "Paxway",
+    logo: {
+      "@type": "ImageObject",
+      url: `${siteUrl}/paxway-logo.png`,
+    },
+  },
   potentialAction: {
     "@type": "SearchAction",
     target: {
@@ -125,12 +165,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        {/* DNS prefetch for external resources */}
+        <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+        <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" crossOrigin="anonymous" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <JsonLd data={organizationSchema} />
         <JsonLd data={websiteSchema} />
         <LayoutShell>{children}</LayoutShell>
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

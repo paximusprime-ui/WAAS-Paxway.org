@@ -133,11 +133,21 @@ const faqSchema = {
     ],
 };
 
+const pricingBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://paxway.org" },
+        { "@type": "ListItem", position: 2, name: "Pricing", item: "https://paxway.org/pricing" },
+    ],
+};
+
 export default function PricingPage() {
     return (
         <main className="flex min-h-screen flex-col items-center overflow-x-hidden pt-24">
             <JsonLd data={pricingSchema} />
             <JsonLd data={faqSchema} />
+            <JsonLd data={pricingBreadcrumb} />
             <Pricing />
             <GuaranteeBadge />
             <TrustBadges />
@@ -146,3 +156,4 @@ export default function PricingPage() {
         </main>
     );
 }
+

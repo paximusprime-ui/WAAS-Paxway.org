@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import BlogContent from "@/components/BlogContent";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "Blog — Tips & Strategies for Growing Your Business Online | Paxway",
@@ -21,6 +22,20 @@ export const metadata: Metadata = {
     },
 };
 
+const blogBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://paxway.org" },
+        { "@type": "ListItem", position: 2, name: "Blog", item: "https://paxway.org/blog" },
+    ],
+};
+
 export default function BlogPage() {
-    return <BlogContent />;
+    return (
+        <>
+            <JsonLd data={blogBreadcrumb} />
+            <BlogContent />
+        </>
+    );
 }

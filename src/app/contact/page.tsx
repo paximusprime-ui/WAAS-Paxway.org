@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContactContent from "@/components/ContactContent";
+import JsonLd from "@/components/JsonLd";
 
 export const metadata: Metadata = {
     title: "Contact Us — Let's Talk About Your Project",
@@ -21,6 +22,47 @@ export const metadata: Metadata = {
     },
 };
 
+const contactBreadcrumb = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: "https://paxway.org" },
+        { "@type": "ListItem", position: 2, name: "Contact", item: "https://paxway.org/contact" },
+    ],
+};
+
+const contactSchema = {
+    "@context": "https://schema.org",
+    "@type": "ContactPage",
+    name: "Contact Paxway",
+    description: "Get in touch with Paxway for a free consultation about your web development project.",
+    url: "https://paxway.org/contact",
+    mainEntity: {
+        "@type": "Organization",
+        name: "Paxway",
+        email: "ceo@paxway.org",
+        url: "https://paxway.org",
+        contactPoint: {
+            "@type": "ContactPoint",
+            contactType: "customer support",
+            email: "ceo@paxway.org",
+            availableLanguage: "English",
+            hoursAvailable: {
+                "@type": "OpeningHoursSpecification",
+                dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                opens: "09:00",
+                closes: "18:00",
+            },
+        },
+    },
+};
+
 export default function ContactPage() {
-    return <ContactContent />;
+    return (
+        <>
+            <JsonLd data={contactBreadcrumb} />
+            <JsonLd data={contactSchema} />
+            <ContactContent />
+        </>
+    );
 }
