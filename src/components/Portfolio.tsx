@@ -146,6 +146,9 @@ function PortfolioCard({ demo, i, isEven }: { demo: typeof demos[number]; i: num
                             alt={`${demo.title} — ${demo.industry} website showcasing ${demo.features.join(', ')}`}
                             fill
                             loading="lazy"
+                            placeholder="blur"
+                            // Uses a very minimal gray blur placeholder encoded data URL
+                            blurDataURL="data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9JzAgMCAxNiAxMCc+PHJlY3Qgd2lkdGg9JzE2JyBoZWlnaHQ9JzEwJyBmaWxsPSdIZjNmNGY2Jy8+PC9zdmc+"
                             className="object-cover transition-transform duration-500 group-hover:scale-105"
                             sizes="(max-width: 768px) 100vw, 55vw"
                         />

@@ -21,40 +21,40 @@ export default function NotFound() {
             <div className="max-w-2xl w-full text-center">
                 {/* Animated 404 */}
                 <div className="mb-8 hero-fade-in">
-                    <div className="inline-flex items-center justify-center w-24 h-24 rounded-3xl bg-gradient-to-br from-teal-50 to-cyan-50 border border-teal-100/60 mb-6">
-                        <AlertTriangle className="w-10 h-10 text-teal-500" />
+                    <div className="inline-flex items-center justify-center w-24 h-24 rounded-[32px] bg-gradient-to-br from-teal-500/10 to-violet-500/10 border border-teal-500/20 mb-8 shadow-inner">
+                        <AlertTriangle className="w-10 h-10 text-teal-600" />
                     </div>
-                    <h1 className="text-8xl sm:text-9xl font-extrabold tracking-tighter bg-gradient-to-r from-teal-400 via-cyan-500 to-violet-500 bg-clip-text text-transparent leading-none">
+                    <h1 className="text-8xl sm:text-[140px] font-extrabold tracking-tighter bg-gradient-to-br from-gray-900 via-teal-900 to-violet-900 bg-clip-text text-transparent leading-none drop-shadow-sm">
                         404
                     </h1>
                 </div>
 
                 <div className="hero-fade-in" style={{ animationDelay: "0.15s" }}>
-                    <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-3">
-                        Page not found
+                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
+                        We lost this page
                     </h2>
-                    <p className="text-gray-500 dark:text-gray-400 text-lg mb-10 max-w-md mx-auto">
+                    <p className="text-gray-500 text-lg mb-12 max-w-md mx-auto leading-relaxed">
                         The page you&apos;re looking for doesn&apos;t exist or has been moved.
-                        Let&apos;s get you back on track.
+                        Let&apos;s get you back to building your digital empire.
                     </p>
                 </div>
 
                 {/* Action buttons */}
                 <div
-                    className="flex flex-col sm:flex-row gap-3 justify-center mb-14 hero-fade-in"
+                    className="flex flex-col sm:flex-row gap-4 justify-center mb-16 hero-fade-in"
                     style={{ animationDelay: "0.3s" }}
                 >
                     <Link
                         href="/"
-                        className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-teal-500 via-cyan-500 to-violet-500 hover:shadow-lg hover:shadow-cyan-400/25 transition-all hover:-translate-y-0.5"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold text-white bg-gray-900 hover:bg-gray-800 hover:shadow-xl hover:shadow-gray-900/20 transition-all hover:-translate-y-1"
                     >
-                        <Home className="w-4 h-4" /> Go Home
+                        <Home className="w-[18px] h-[18px]" /> Return Home
                     </Link>
                     <Link
                         href="/contact"
-                        className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full text-sm font-semibold text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 hover:border-gray-300 hover:shadow-md transition-all hover:-translate-y-0.5"
+                        className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full text-sm font-bold text-gray-700 bg-white border border-gray-200 hover:border-gray-300 hover:bg-gray-50 hover:shadow-md transition-all hover:-translate-y-1"
                     >
-                        <Search className="w-4 h-4" /> Contact Us
+                        <Search className="w-[18px] h-[18px]" /> Contact Support
                     </Link>
                 </div>
 

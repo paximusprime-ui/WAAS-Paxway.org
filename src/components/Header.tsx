@@ -69,7 +69,7 @@ export default function Header() {
                     })}
                     <Link
                         href="/pricing"
-                        className="px-5 py-2.5 rounded-full text-sm font-semibold text-white bg-gradient-to-r from-teal-400 to-cyan-500 hover:shadow-lg hover:shadow-cyan-500/25 transition-all hover:-translate-y-0.5"
+                        className="btn-premium px-6 py-2.5 rounded-full text-sm font-semibold"
                     >
                         Get Started
                     </Link>

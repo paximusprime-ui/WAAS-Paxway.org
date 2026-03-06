@@ -146,7 +146,7 @@ export default function HeroSection() {
                             <div className="hover-lift">
                                 <Link
                                     href="#pricing"
-                                    className="group relative inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white bg-gradient-to-r from-purple-600 to-violet-600 overflow-hidden shadow-lg shadow-purple-500/25 hover:shadow-xl hover:shadow-purple-500/35 transition-all duration-300"
+                                    className="btn-premium inline-flex items-center gap-2 px-8 py-4 rounded-full font-semibold text-white"
                                 >
                                     <span className="relative z-10 flex items-center gap-2">
                                         Transform Your Business{" "}
@@ -160,7 +160,7 @@ export default function HeroSection() {
                             <div className="hover-lift">
                                 <Link
                                     href="/portfolio"
-                                    className="px-8 py-4 rounded-full font-medium text-gray-700 hover:text-gray-900 transition-colors border-2 border-gray-200/60 bg-white/80 hover:border-purple-300 hover:bg-purple-50/50"
+                                    className="btn-glass px-8 py-4 rounded-full font-semibold text-gray-800"
                                 >
                                     View Our Work
                                 </Link>

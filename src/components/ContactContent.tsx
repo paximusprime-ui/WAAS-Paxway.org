@@ -14,10 +14,32 @@ export default function ContactContent() {
     });
     const [submitted, setSubmitted] = useState(false);
 
-    const handleSubmit = (e: React.FormEvent) => {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [error, setError] = useState("");
+
+    const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        // In production, connect to an API route
-        setSubmitted(true);
+        setIsSubmitting(true);
+        setError("");
+
+        try {
+            const res = await fetch("/api/contact", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(formData),
+            });
+            const data = await res.json();
+
+            if (res.ok) {
+                setSubmitted(true);
+            } else {
+                setError(data.error || "Something went wrong. Please try again.");
+            }
+        } catch (err) {
+            setError("A network error occurred. Please try again.");
+        } finally {
+            setIsSubmitting(false);
+        }
     };
 
     const formRef = useReveal();
@@ -132,11 +154,15 @@ export default function ContactContent() {
                                             placeholder="Tell us about your project, goals, or any questions you have..."
                                         />
                                     </div>
+                                    {error && (
+                                        <p className="text-red-500 text-sm font-medium">{error}</p>
+                                    )}
                                     <button
                                         type="submit"
-                                        className="w-full py-4 rounded-2xl font-bold text-sm text-white bg-gradient-to-r from-teal-400 to-cyan-500 shadow-lg shadow-cyan-500/20 hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2"
+                                        disabled={isSubmitting}
+                                        className="w-full py-4 rounded-2xl font-bold text-sm text-white bg-gradient-to-r from-teal-400 to-cyan-500 shadow-lg shadow-cyan-500/20 hover:shadow-xl hover:-translate-y-0.5 transition-all flex items-center justify-center gap-2 disabled:opacity-70 disabled:cursor-not-allowed"
                                     >
-                                        Send Message <ArrowRight className="w-4 h-4" />
+                                        {isSubmitting ? "Sending..." : "Send Message"} <ArrowRight className="w-4 h-4" />
                                     </button>
                                 </form>
                             )}

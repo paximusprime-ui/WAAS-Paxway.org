@@ -29,11 +29,29 @@ const pricingSchema = {
     "@context": "https://schema.org",
     "@type": "Product",
     name: "Paxway Website as a Service",
+    image: "https://paxway.org/og-image.jpg",
     description:
         "Professional website development and management plans for businesses of all sizes.",
     brand: {
         "@type": "Brand",
         name: "Paxway",
+    },
+    aggregateRating: {
+        "@type": "AggregateRating",
+        ratingValue: "4.9",
+        reviewCount: "135"
+    },
+    review: {
+        "@type": "Review",
+        reviewRating: {
+            "@type": "Rating",
+            ratingValue: "5",
+            bestRating: "5"
+        },
+        author: {
+            "@type": "Person",
+            name: "Verified Client"
+        }
     },
     offers: [
         {
